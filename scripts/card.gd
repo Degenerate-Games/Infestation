@@ -1,4 +1,4 @@
-extends Area2D
+extends Control
 
 var hoverable = true
 var growing = false
@@ -6,7 +6,7 @@ var shrinking = false
 var default_scale = 0.55
 var full_scale = 0.75
 var start_position
-var vertical_translation: Vector2 = Vector2.UP * 200
+var vertical_translation: Vector2 = Vector2.UP * 150
 
 var card_name: String
 var prestige_level: int
@@ -36,14 +36,18 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var weight = 1.0 - $AnimationTimer.time_left
+	if weight == 1.0:
+		growing = false
+		shrinking = false
+	
 	if growing:
 		global_position = Global.lerpvec2(start_position, start_position + vertical_translation, weight)
 		var scl = lerpf(default_scale, full_scale, weight)
-		global_scale = Vector2(scl, scl)
+		scale = Vector2(scl, scl)
 	elif shrinking:
 		global_position = Global.lerpvec2(start_position + vertical_translation, start_position, weight)
 		var scl = lerpf(full_scale, default_scale, weight)
-		global_scale = Vector2(scl, scl)
+		scale = Vector2(scl, scl)
 
 func _on_mouse_entered():
 	if !hoverable: return
