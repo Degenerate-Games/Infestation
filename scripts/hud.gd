@@ -1,10 +1,13 @@
 extends Node2D
 
+enum PHASE {DRAW, PLAY}
+
 @export var base_deck: Array[PackedScene]
 var deck: Array[PackedScene]
 @export var hand_size_limit: int
 var hand: Array
 @export var card_width: float = 256.0
+@export var current_phase: PHASE = PHASE.DRAW
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +36,12 @@ func shuffle_deck():
 	deck.shuffle()
 
 func draw_card():
+	#if deck.size() == 0:
+		#deck = base_deck.duplicate(true)
+		#shuffle_deck()
+		#for card in hand:
+			#remove_card_from_deck(card)
+	
 	var card = deck.pop_back()
 	card = card.instantiate()
 	card.name = card.card_name
@@ -50,3 +59,30 @@ func remove_card_from_hand(card):
 		if hand[i] == card:
 			var c = hand.pop_at(i)
 			c.queue_free()
+			
+#func remove_card_from_deck(card):
+	#for i in deck.size():
+		#if deck[i] == card:
+			#deck.pop_at(i)
+
+
+func _on_control_button_1_gui_input(event):
+	if event.is_action_pressed("Select"):
+		match $ControlButton1.texture.region.position.x:
+			0.0:
+				$ControlButton1.texture.region.position.x = 32
+			32.0:
+				$ControlButton1.texture.region.position.x = 64
+			64.0:
+				$ControlButton1.texture.region.position.x = 32
+
+
+func _on_control_button_2_gui_input(event):
+	if event.is_action_pressed("Select"):
+		match $ControlButton2.texture.region.position.x:
+			0.0:
+				$ControlButton2.texture.region.position.x = 32
+			32.0:
+				$ControlButton2.texture.region.position.x = 64
+			64.0:
+				$ControlButton2.texture.region.position.x = 32
