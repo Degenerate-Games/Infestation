@@ -11,7 +11,7 @@
 [node name="5 Star Background" type="TextureRect" parent="."]
 show_behind_parent = true
 offset_left = 175.0
-offset_top = 2.0
+offset_top = -3.0
 offset_right = 975.0
 offset_bottom = 602.0
 texture = ExtResource("1_wvugk")
@@ -20,8 +20,8 @@ stretch_mode = 1
 [node name="MapShadow" type="Sprite2D" parent="5 Star Background"]
 z_index = -1
 texture_filter = 1
-position = Vector2(388, 369.1)
-scale = Vector2(3.08125, 3.11583)
+position = Vector2(384.5, 366.5)
+scale = Vector2(3.10938, 3.05417)
 texture = ExtResource("2_5d8ir")
 
 [node name="HUD" parent="." instance=ExtResource("2_heg63")]
@@ -32,6 +32,6 @@ hand_size_limit = 3
 [node name="TableBg" type="Sprite2D" parent="."]
 z_index = -2
 texture_filter = 1
-position = Vector2(576, 327)
-scale = Vector2(3.59375, 2.71667)
+position = Vector2(576.5, 324)
+scale = Vector2(3.62187, 2.725)
 texture = ExtResource("2_647mx")
