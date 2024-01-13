@@ -1,1 +1,2 @@
-# Infestation
+#  ![image](icon.svg) Infestation
+
