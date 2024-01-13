@@ -3,29 +3,61 @@ extends Control
 var hoverable = true
 var growing = false
 var shrinking = false
-var default_scale = 0.55
+var start_scale
+var default_scale
 var full_scale = 0.75
 var start_position
+var default_position
 var vertical_translation: Vector2 = Vector2.UP * 150
 
-var card_name: String
-var prestige_level: int
-var level: int
-var defense: int
-var attack: int
-var description: String
-
-func _init(name: String = "Card Name", prestige_lvl: int = 0, lvl: int = 1, def: int = 0, atk: int = 0, desc: String = ""):
-	card_name = name
-	prestige_level = prestige_lvl
-	level = lvl
-	defense = def
-	attack = atk
-	description = desc
+@export_category("Card Data")
+@export var card_name: String = "Card Name":
+	get:
+		return card_name
+	set(value):
+		if $CardName:
+			$CardName.text = value
+		card_name = value
+@export var prestige_level: int = 0:
+	get:
+		return prestige_level
+	set(value):
+		if $PrestigeLabel:
+			$PrestigeLabel.texture.region.position.x = value * 16.0
+		prestige_level = value
+@export var level: int = 1:
+	get:
+		return level
+	set(value):
+		if $Level:
+			$Level.text = str(value)
+		level = value
+@export var defense: int = 0:
+	get:
+		return defense
+	set(value):
+		if $Shield/Defense:
+			$Shield/Defense.text = str(value)
+		defense = value
+@export var attack: int = 0:
+	get:
+		return attack
+	set(value):
+		if $Sword/Attack:
+			$Sword/Attack.text = str(value)
+		attack = value
+@export var description: String = "":
+	get:
+		return description
+	set(value):
+		if $DescriptionBackground/Description:
+			$DescriptionBackground/Description.text = value
+		description = value
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	start_position = global_position
+	default_position = global_position
+	default_scale = get_global_transform().get_scale().x
 	$CardName.text = card_name
 	$PrestigeLabel.texture.region.position.x = prestige_level * 16.0
 	$Level.text = str(level)
@@ -35,30 +67,36 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var weight = 1.0 - $AnimationTimer.time_left
+	var weight = $AnimationTimer.get_wait_time() - $AnimationTimer.time_left
+	weight = remap(weight, 0.0, $AnimationTimer.get_wait_time(), 0.0, 1.0)
 	if weight == 1.0:
+		if shrinking:
+			top_level = false
 		growing = false
 		shrinking = false
 	
 	if growing:
-		global_position = Global.lerpvec2(start_position, start_position + vertical_translation, weight)
-		var scl = lerpf(default_scale, full_scale, weight)
+		global_position = Global.lerpvec2(start_position, default_position + vertical_translation, weight)
+		var scl = lerpf(start_scale, full_scale, weight)
 		scale = Vector2(scl, scl)
 	elif shrinking:
-		global_position = Global.lerpvec2(start_position + vertical_translation, start_position, weight)
-		var scl = lerpf(full_scale, default_scale, weight)
+		global_position = Global.lerpvec2(start_position, default_position, weight)
+		var scl = lerpf(start_scale, default_scale, weight)
 		scale = Vector2(scl, scl)
 
 func _on_mouse_entered():
 	if !hoverable: return
-	$AnimationTimer.start(1.0)
+	$AnimationTimer.start(0.5)
 	growing = true
 	shrinking = false
+	start_position = global_position
+	start_scale = get_global_transform().get_scale().x
 	top_level = true
 
 func _on_mouse_exited():
 	if !hoverable: return
-	$AnimationTimer.start(1.0)
+	$AnimationTimer.start(0.3)
 	growing = false
 	shrinking = true
-	top_level = false
+	start_position = global_position
+	start_scale = get_global_transform().get_scale().x
