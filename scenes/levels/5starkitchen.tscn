@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://chd535ig1s33b"]
+
+[ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
+[ext_resource type="PackedScene" uid="uid://dr68m8ihkigac" path="res://scenes/card.tscn" id="2_tmkao"]
+
+[node name="Level" type="Node2D"]
+
+[node name="5 Star Background" type="TextureRect" parent="."]
+show_behind_parent = true
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_wvugk")
+stretch_mode = 1
+
+[node name="Card" parent="." instance=ExtResource("2_tmkao")]
+position = Vector2(456, 510)
+
+[node name="Card2" parent="." instance=ExtResource("2_tmkao")]
+position = Vector2(528, 510)
+
+[node name="Card3" parent="." instance=ExtResource("2_tmkao")]
+position = Vector2(588, 510)

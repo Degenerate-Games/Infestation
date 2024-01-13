@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr68m8ihkigac"]
+
+[ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="1_6rysh"]
+
+[node name="Card" type="Node2D"]
+scale = Vector2(0.45, 0.45)
+
+[node name="CardBackground" type="TextureRect" parent="."]
+offset_right = 224.0
+offset_bottom = 276.0
+texture = ExtResource("1_6rysh")
