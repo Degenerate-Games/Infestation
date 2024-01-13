@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://chd535ig1s33b"]
+[gd_scene load_steps=6 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
+[ext_resource type="Texture2D" uid="uid://dk5kqbw4fypxh" path="res://resources/textures/table/mapShadow.png" id="2_5d8ir"]
+[ext_resource type="Texture2D" uid="uid://dvt5iueuo0b56" path="res://resources/textures/table/tableBG.png" id="2_647mx"]
 [ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="2_heg63"]
 [ext_resource type="PackedScene" uid="uid://k4u2jh6xyhwi" path="res://scenes/cards/cockroach.tscn" id="3_q2k55"]
 
@@ -8,12 +10,28 @@
 
 [node name="5 Star Background" type="TextureRect" parent="."]
 show_behind_parent = true
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 175.0
+offset_top = 2.0
+offset_right = 975.0
+offset_bottom = 602.0
 texture = ExtResource("1_wvugk")
 stretch_mode = 1
+
+[node name="MapShadow" type="Sprite2D" parent="5 Star Background"]
+z_index = -1
+texture_filter = 1
+position = Vector2(388, 369.1)
+scale = Vector2(3.08125, 3.11583)
+texture = ExtResource("2_5d8ir")
 
 [node name="HUD" parent="." instance=ExtResource("2_heg63")]
 texture_filter = 1
 base_deck = Array[PackedScene]([ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55")])
 hand_size_limit = 3
+
+[node name="TableBg" type="Sprite2D" parent="."]
+z_index = -2
+texture_filter = 1
+position = Vector2(576, 327)
+scale = Vector2(3.59375, 2.71667)
+texture = ExtResource("2_647mx")
