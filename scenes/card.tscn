@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr68m8ihkigac"]
+[gd_scene load_steps=10 format=3 uid="uid://dr68m8ihkigac"]
 
 [ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="1_6rysh"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_tj1kb"]
 [ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="2_8onjp"]
 [ext_resource type="Texture2D" uid="uid://dsqi4dtgvbhb6" path="res://resources/textures/cards/borders/prestige.png" id="3_wgwrp"]
 [ext_resource type="Texture2D" uid="uid://0veayrt4iv8c" path="res://resources/textures/cards/decorations/shield.png" id="4_jeut3"]
@@ -16,6 +17,7 @@ size = Vector2(256.364, 358.182)
 
 [node name="Card" type="Area2D"]
 scale = Vector2(0.55, 0.55)
+script = ExtResource("1_tj1kb")
 
 [node name="CardBackground" type="TextureRect" parent="."]
 offset_right = 224.0
@@ -87,13 +89,30 @@ theme_override_font_sizes/font_size = 31
 text = "1"
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="DescriptionBackground" type="TextureRect" parent="."]
 offset_left = 7.27273
 offset_top = 243.636
 offset_right = 252.273
 offset_bottom = 343.636
 texture = ExtResource("6_t66lv")
 
+[node name="Description" type="Label" parent="DescriptionBackground"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 20.0
+offset_right = 233.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 13
+text = "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet "
+autowrap_mode = 2
+
 [node name="CardCollider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(128.182, 179.091)
 shape = SubResource("RectangleShape2D_t8txg")
+
+[node name="AnimationTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
