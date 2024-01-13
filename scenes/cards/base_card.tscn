@@ -1,30 +1,30 @@
 [gd_scene load_steps=9 format=3 uid="uid://dr68m8ihkigac"]
 
-[ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="1_6rysh"]
-[ext_resource type="Script" path="res://scripts/card.gd" id="1_tj1kb"]
-[ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="2_8onjp"]
-[ext_resource type="Texture2D" uid="uid://dsqi4dtgvbhb6" path="res://resources/textures/cards/borders/prestige.png" id="3_wgwrp"]
-[ext_resource type="Texture2D" uid="uid://0veayrt4iv8c" path="res://resources/textures/cards/decorations/shield.png" id="4_jeut3"]
-[ext_resource type="Texture2D" uid="uid://od56iwy3sabo" path="res://resources/textures/cards/decorations/sword.png" id="5_f30ve"]
-[ext_resource type="Texture2D" uid="uid://d1v7flfq6ceme" path="res://resources/textures/cards/decorations/parchment.png" id="6_t66lv"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_gxy41"]
+[ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="2_ousvh"]
+[ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="3_lyl6x"]
+[ext_resource type="Texture2D" uid="uid://dsqi4dtgvbhb6" path="res://resources/textures/cards/borders/prestige.png" id="4_r5iv0"]
+[ext_resource type="Texture2D" uid="uid://0veayrt4iv8c" path="res://resources/textures/cards/decorations/shield.png" id="5_usv5x"]
+[ext_resource type="Texture2D" uid="uid://od56iwy3sabo" path="res://resources/textures/cards/decorations/sword.png" id="6_668xg"]
+[ext_resource type="Texture2D" uid="uid://d1v7flfq6ceme" path="res://resources/textures/cards/decorations/parchment.png" id="7_px0sw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ieuhq"]
-atlas = ExtResource("3_wgwrp")
+atlas = ExtResource("4_r5iv0")
 region = Rect2(0, 0, 16, 16)
 
 [node name="Card" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 358.0
 scale = Vector2(0.55, 0.55)
-script = ExtResource("1_tj1kb")
-prestige_level = 2
-description = "This is a test description"
+script = ExtResource("1_gxy41")
 
 [node name="CardBackground" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 224.0
 offset_bottom = 276.0
-texture = ExtResource("1_6rysh")
+texture = ExtResource("2_ousvh")
 
 [node name="CardName" type="Label" parent="."]
 layout_mode = 0
@@ -32,7 +32,7 @@ offset_left = 13.0
 offset_top = 11.0
 offset_right = 145.0
 offset_bottom = 47.0
-theme_override_fonts/font = ExtResource("2_8onjp")
+theme_override_fonts/font = ExtResource("3_lyl6x")
 theme_override_font_sizes/font_size = 31
 text = "Card Name"
 
@@ -42,7 +42,7 @@ offset_left = 202.0
 offset_top = 11.0
 offset_right = 242.0
 offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("2_8onjp")
+theme_override_fonts/font = ExtResource("3_lyl6x")
 theme_override_font_sizes/font_size = 30
 text = "1"
 horizontal_alignment = 1
@@ -62,7 +62,7 @@ offset_left = 14.5455
 offset_top = 45.4545
 offset_right = 46.5455
 offset_bottom = 77.4545
-texture = ExtResource("4_jeut3")
+texture = ExtResource("5_usv5x")
 expand_mode = 1
 stretch_mode = 2
 
@@ -82,7 +82,7 @@ offset_left = 85.4545
 offset_top = 45.4545
 offset_right = 117.455
 offset_bottom = 77.4545
-texture = ExtResource("5_f30ve")
+texture = ExtResource("6_668xg")
 expand_mode = 1
 stretch_mode = 2
 
@@ -96,13 +96,22 @@ theme_override_font_sizes/font_size = 31
 text = "1"
 vertical_alignment = 1
 
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 87.0
+offset_right = 240.0
+offset_bottom = 242.0
+expand_mode = 1
+stretch_mode = 3
+
 [node name="DescriptionBackground" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 7.27273
 offset_top = 243.636
 offset_right = 252.273
 offset_bottom = 343.636
-texture = ExtResource("6_t66lv")
+texture = ExtResource("7_px0sw")
 
 [node name="Description" type="Label" parent="DescriptionBackground"]
 layout_mode = 0
