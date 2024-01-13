@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dr68m8ihkigac"]
+[gd_scene load_steps=9 format=3 uid="uid://dr68m8ihkigac"]
 
 [ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="1_6rysh"]
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_tj1kb"]
@@ -12,10 +12,9 @@
 atlas = ExtResource("3_wgwrp")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8txg"]
-size = Vector2(256.364, 358.182)
-
-[node name="Card" type="Area2D"]
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 scale = Vector2(0.55, 0.55)
 script = ExtResource("1_tj1kb")
 
@@ -105,11 +104,6 @@ offset_bottom = 80.0
 theme_override_font_sizes/font_size = 13
 text = "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet "
 autowrap_mode = 2
-
-[node name="CardCollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(128.182, 179.091)
-shape = SubResource("RectangleShape2D_t8txg")
 
 [node name="AnimationTimer" type="Timer" parent="."]
 one_shot = true
