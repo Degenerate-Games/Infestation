@@ -13,10 +13,10 @@ texture = ExtResource("1_wvugk")
 stretch_mode = 1
 
 [node name="Card" parent="." instance=ExtResource("2_tmkao")]
-position = Vector2(456, 510)
+position = Vector2(457, 475)
 
 [node name="Card2" parent="." instance=ExtResource("2_tmkao")]
-position = Vector2(528, 510)
+position = Vector2(531, 475)
 
 [node name="Card3" parent="." instance=ExtResource("2_tmkao")]
-position = Vector2(588, 510)
+position = Vector2(624, 446)
