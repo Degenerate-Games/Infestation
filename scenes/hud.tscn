@@ -22,10 +22,10 @@ region = Rect2(0, 0, 32, 32)
 
 [node name="HUD" type="Node2D" node_paths=PackedStringArray("control_button_1", "control_button_2")]
 script = ExtResource("1_07qrn")
-control_button_1 = NodePath("MarginContainer/HBoxContainer/ControlButton1")
-control_button_2 = NodePath("MarginContainer/HBoxContainer/ControlButton2")
+control_button_1 = NodePath("MainContainer/ControlButtonContainer/ControlButton1")
+control_button_2 = NodePath("MainContainer/ControlButtonContainer/ControlButton2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MainContainer" type="MarginContainer" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_constants/margin_left = 20
@@ -33,7 +33,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Wave" type="Label" parent="MarginContainer"]
+[node name="Wave" type="Label" parent="MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -41,7 +41,7 @@ theme_override_fonts/font = ExtResource("5_2anwg")
 theme_override_font_sizes/font_size = 40
 text = " 01/10 "
 
-[node name="WaveBackground" type="TextureRect" parent="MarginContainer/Wave"]
+[node name="WaveBackground" type="TextureRect" parent="MainContainer/Wave"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -52,18 +52,18 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_fgfvx")
 expand_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="ControlButtonContainer" type="HBoxContainer" parent="MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="ControlButton1" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="ControlButton1" type="TextureRect" parent="MainContainer/ControlButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_ikbn5")
 
-[node name="ControlButton2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="ControlButton2" type="TextureRect" parent="MainContainer/ControlButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -81,5 +81,5 @@ card_name = "Infestation"
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(555, 508)
 
-[connection signal="gui_input" from="MarginContainer/HBoxContainer/ControlButton1" to="." method="_on_control_button_1_gui_input"]
-[connection signal="gui_input" from="MarginContainer/HBoxContainer/ControlButton2" to="." method="_on_control_button_2_gui_input"]
+[connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton1" to="." method="_on_control_button_1_gui_input"]
+[connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton2" to="." method="_on_control_button_2_gui_input"]
