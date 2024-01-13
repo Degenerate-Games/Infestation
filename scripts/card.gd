@@ -1,13 +1,19 @@
 extends Control
 
 var hoverable = true
+var hovering = false
 var growing = false
 var shrinking = false
 var start_scale
 var default_scale
 var full_scale = 0.75
 var start_position
-var default_position
+var default_position: Vector2:
+	get:
+		return default_position
+	set(value):
+		default_position = value
+		global_position = value
 var vertical_translation: Vector2 = Vector2.UP * 150
 
 @export_category("Card Data")
@@ -46,6 +52,13 @@ var vertical_translation: Vector2 = Vector2.UP * 150
 		if $Sword/Attack:
 			$Sword/Attack.text = str(value)
 		attack = value
+@export var art_texture: Texture2D = null:
+	get:
+		return art_texture
+	set(value):
+		if $Art:
+			$Art.texture = value
+		art_texture = value
 @export var description: String = "":
 	get:
 		return description
@@ -58,12 +71,13 @@ var vertical_translation: Vector2 = Vector2.UP * 150
 func _ready():
 	default_position = global_position
 	default_scale = get_global_transform().get_scale().x
-	$CardName.text = card_name
-	$PrestigeLabel.texture.region.position.x = prestige_level * 16.0
-	$Level.text = str(level)
-	$Shield/Defense.text = str(defense)
-	$Sword/Attack.text = str(attack)
-	$DescriptionBackground/Description.text = description
+	if $CardName: $CardName.text = card_name
+	if $PrestigeLabel: $PrestigeLabel.texture.region.position.x = prestige_level * 16.0
+	if $Level: $Level.text = str(level)
+	if $Shield/Defense: $Shield/Defense.text = str(defense)
+	if $Sword/Attack: $Sword/Attack.text = str(attack)
+	if $Art: $Art.texture = art_texture
+	if $DescriptionBackground/Description: $DescriptionBackground/Description.text = description
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -87,6 +101,7 @@ func _process(delta):
 func _on_mouse_entered():
 	if !hoverable: return
 	$AnimationTimer.start(0.5)
+	hovering = true
 	growing = true
 	shrinking = false
 	start_position = global_position
@@ -96,6 +111,7 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if !hoverable: return
 	$AnimationTimer.start(0.3)
+	hovering = false
 	growing = false
 	shrinking = true
 	start_position = global_position
