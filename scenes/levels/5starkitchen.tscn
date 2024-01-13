@@ -14,5 +14,6 @@ texture = ExtResource("1_wvugk")
 stretch_mode = 1
 
 [node name="HUD" parent="." instance=ExtResource("2_heg63")]
+texture_filter = 1
 base_deck = Array[PackedScene]([ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55")])
 hand_size_limit = 3
