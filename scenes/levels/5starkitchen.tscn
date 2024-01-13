@@ -1,21 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://chd535ig1s33b"]
+[gd_scene load_steps=18 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
 [ext_resource type="Texture2D" uid="uid://dk5kqbw4fypxh" path="res://resources/textures/table/mapShadow.png" id="2_5d8ir"]
 [ext_resource type="Texture2D" uid="uid://dvt5iueuo0b56" path="res://resources/textures/table/tableBG.png" id="2_647mx"]
 [ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="2_heg63"]
+[ext_resource type="Texture2D" uid="uid://4cjvvg0loiyb" path="res://resources/textures/5star/5star_wall.png" id="2_jef5x"]
 [ext_resource type="PackedScene" uid="uid://k4u2jh6xyhwi" path="res://scenes/cards/cockroach.tscn" id="3_q2k55"]
+[ext_resource type="Texture2D" uid="uid://pnh6r7or8uit" path="res://resources/sprites/enemies/structures/hotbar/hotbar_a.png" id="7_kt8o8"]
+[ext_resource type="Texture2D" uid="uid://b4ua00aos71si" path="res://resources/sprites/enemies/structures/sink/sink_static.png" id="8_6i0mi"]
+[ext_resource type="Texture2D" uid="uid://bawnermbe2a5n" path="res://resources/sprites/enemies/structures/salad bar/saladbar_a.png" id="9_litau"]
+[ext_resource type="Texture2D" uid="uid://c2ae61xmkdwxf" path="res://resources/sprites/enemies/structures/stove/stove_static.png" id="10_nnti6"]
+[ext_resource type="Texture2D" uid="uid://cpfrw0q3utqes" path="res://resources/sprites/enemies/troops/chef/chef_a.png" id="11_7ayj8"]
+[ext_resource type="Texture2D" uid="uid://bhr7t8ku2agbo" path="res://resources/sprites/enemies/troops/cook/cook_a_static.png" id="12_u4fhy"]
+[ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/Manager.png" id="13_cvu1c"]
+[ext_resource type="Texture2D" uid="uid://bfq5b4m61ogms" path="res://resources/sprites/units/roach/roach_l1-p0.png" id="14_xb6x7"]
+[ext_resource type="Texture2D" uid="uid://cclp178xjxloe" path="res://resources/sprites/units/Rat/rat_l1-p0.png" id="15_jm3o5"]
+[ext_resource type="Texture2D" uid="uid://bjjiqt0mdq4yg" path="res://resources/sprites/units/mouse/mouse_l1-p0.png" id="16_g7306"]
+[ext_resource type="Texture2D" uid="uid://cxggmuw6mrxrt" path="res://resources/sprites/units/bird/bird_l1-p0.png" id="17_aggw5"]
 
 [node name="Level" type="Node2D"]
 
 [node name="5 Star Background" type="TextureRect" parent="."]
 show_behind_parent = true
-offset_left = 175.0
-offset_top = -3.0
-offset_right = 975.0
-offset_bottom = 602.0
+texture_filter = 1
+offset_left = 177.0
+offset_right = 982.0
+offset_bottom = 605.0
 texture = ExtResource("1_wvugk")
 stretch_mode = 1
+
+[node name="5StarWall" type="Sprite2D" parent="5 Star Background"]
+texture_filter = 1
+position = Vector2(402.667, 302.5)
+scale = Vector2(3.36111, 3.36111)
+texture = ExtResource("2_jef5x")
 
 [node name="MapShadow" type="Sprite2D" parent="5 Star Background"]
 z_index = -1
@@ -32,6 +50,128 @@ hand_size_limit = 3
 [node name="TableBg" type="Sprite2D" parent="."]
 z_index = -2
 texture_filter = 1
-position = Vector2(576.5, 324)
-scale = Vector2(3.62187, 2.725)
+position = Vector2(576, 324.5)
+scale = Vector2(3.60625, 2.7125)
 texture = ExtResource("2_647mx")
+
+[node name="Set Dressing-Delete later" type="Node" parent="."]
+
+[node name="HotbarA" type="Sprite2D" parent="Set Dressing-Delete later"]
+texture_filter = 1
+position = Vector2(875, 450)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("7_kt8o8")
+
+[node name="SinkStatic" type="Sprite2D" parent="Set Dressing-Delete later"]
+texture_filter = 1
+position = Vector2(545, 105)
+scale = Vector2(2, 2)
+texture = ExtResource("8_6i0mi")
+
+[node name="SinkStatic2" type="Sprite2D" parent="Set Dressing-Delete later"]
+texture_filter = 1
+position = Vector2(610, 105)
+scale = Vector2(2, 2)
+texture = ExtResource("8_6i0mi")
+
+[node name="SaladbarA" type="Sprite2D" parent="Set Dressing-Delete later"]
+texture_filter = 1
+position = Vector2(875, 225)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("9_litau")
+
+[node name="StoveStatic2" type="Sprite2D" parent="Set Dressing-Delete later"]
+texture_filter = 1
+position = Vector2(285, 280)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("10_nnti6")
+
+[node name="StoveStatic3" type="Sprite2D" parent="Set Dressing-Delete later"]
+texture_filter = 1
+position = Vector2(285, 345)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("10_nnti6")
+
+[node name="Enemies" type="Node" parent="Set Dressing-Delete later"]
+
+[node name="ChefA" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
+texture_filter = 1
+position = Vector2(340, 282)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("11_7ayj8")
+
+[node name="CookAStatic" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
+texture_filter = 1
+position = Vector2(825, 210)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("12_u4fhy")
+
+[node name="CookAStatic2" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
+texture_filter = 1
+position = Vector2(547, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("12_u4fhy")
+
+[node name="Manager" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
+texture_filter = 1
+position = Vector2(779, 511)
+rotation = -0.785398
+scale = Vector2(2, 2)
+texture = ExtResource("13_cvu1c")
+
+[node name="The bois" type="Node" parent="Set Dressing-Delete later"]
+
+[node name="RoachL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
+texture_filter = 1
+position = Vector2(771, 373)
+rotation = -0.71733
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_xb6x7")
+
+[node name="RoachL1-p1" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
+texture_filter = 1
+position = Vector2(719, 380)
+rotation = -1.07687
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_xb6x7")
+
+[node name="RoachL1-p2" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
+texture_filter = 1
+position = Vector2(735, 454)
+rotation = -0.359538
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_xb6x7")
+
+[node name="RatL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
+texture_filter = 1
+position = Vector2(421, 208)
+rotation = 0.598648
+scale = Vector2(2, 2)
+texture = ExtResource("15_jm3o5")
+
+[node name="MouseL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
+texture_filter = 1
+position = Vector2(737, 215)
+rotation = -0.958186
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("16_g7306")
+
+[node name="MouseL1-p1" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
+texture_filter = 1
+position = Vector2(671, 255)
+rotation = -1.67552
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("16_g7306")
+
+[node name="BirdL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
+texture_filter = 1
+position = Vector2(395, 477)
+rotation = -0.575959
+scale = Vector2(2, 2)
+texture = ExtResource("17_aggw5")
