@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
-[ext_resource type="PackedScene" uid="uid://dr68m8ihkigac" path="res://scenes/card.tscn" id="2_tmkao"]
+[ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="2_heg63"]
 
 [node name="Level" type="Node2D"]
 
@@ -12,20 +12,4 @@ offset_bottom = 648.0
 texture = ExtResource("1_wvugk")
 stretch_mode = 1
 
-[node name="Card" parent="." instance=ExtResource("2_tmkao")]
-offset_left = 457.0
-offset_top = 475.0
-offset_right = 457.0
-offset_bottom = 475.0
-
-[node name="Card2" parent="." instance=ExtResource("2_tmkao")]
-offset_left = 531.0
-offset_top = 475.0
-offset_right = 531.0
-offset_bottom = 475.0
-
-[node name="Card3" parent="." instance=ExtResource("2_tmkao")]
-offset_left = 625.0
-offset_top = 475.0
-offset_right = 625.0
-offset_bottom = 475.0
+[node name="HUD" parent="." instance=ExtResource("2_heg63")]
