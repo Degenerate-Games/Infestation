@@ -1,11 +1,92 @@
-[gd_scene load_steps=2 format=3 uid="uid://dr68m8ihkigac"]
+[gd_scene load_steps=8 format=3 uid="uid://dr68m8ihkigac"]
 
 [ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="1_6rysh"]
+[ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="2_8onjp"]
+[ext_resource type="Texture2D" uid="uid://dsqi4dtgvbhb6" path="res://resources/textures/cards/borders/prestige.png" id="3_wgwrp"]
+[ext_resource type="Texture2D" uid="uid://0veayrt4iv8c" path="res://resources/textures/cards/decorations/shield.png" id="4_jeut3"]
+[ext_resource type="Texture2D" uid="uid://od56iwy3sabo" path="res://resources/textures/cards/decorations/sword.png" id="5_f30ve"]
+[ext_resource type="Texture2D" uid="uid://d1v7flfq6ceme" path="res://resources/textures/cards/decorations/parchment.png" id="6_t66lv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieuhq"]
+atlas = ExtResource("3_wgwrp")
+region = Rect2(0, 0, 16, 16)
 
 [node name="Card" type="Node2D"]
-scale = Vector2(0.45, 0.45)
+scale = Vector2(0.55, 0.55)
 
 [node name="CardBackground" type="TextureRect" parent="."]
 offset_right = 224.0
 offset_bottom = 276.0
 texture = ExtResource("1_6rysh")
+
+[node name="CardName" type="Label" parent="."]
+offset_left = 13.0
+offset_top = 11.0
+offset_right = 145.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("2_8onjp")
+theme_override_font_sizes/font_size = 31
+text = "Card Name"
+
+[node name="Level" type="Label" parent="."]
+offset_left = 202.0
+offset_top = 11.0
+offset_right = 242.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_8onjp")
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrestigeLabel" type="TextureRect" parent="."]
+offset_left = 202.222
+offset_top = 11.1111
+offset_right = 242.222
+offset_bottom = 51.1111
+texture = SubResource("AtlasTexture_ieuhq")
+
+[node name="Shield" type="TextureRect" parent="."]
+offset_left = 14.5455
+offset_top = 45.4545
+offset_right = 46.5455
+offset_bottom = 77.4545
+texture = ExtResource("4_jeut3")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Defense" type="Label" parent="Shield"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -7.0
+offset_right = 53.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 31
+text = "1"
+vertical_alignment = 1
+
+[node name="Sword" type="TextureRect" parent="."]
+offset_left = 85.4545
+offset_top = 45.4545
+offset_right = 117.455
+offset_bottom = 77.4545
+texture = ExtResource("5_f30ve")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Attack" type="Label" parent="Sword"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -7.0
+offset_right = 53.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 31
+text = "1"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 7.27273
+offset_top = 243.636
+offset_right = 252.273
+offset_bottom = 343.636
+texture = ExtResource("6_t66lv")
