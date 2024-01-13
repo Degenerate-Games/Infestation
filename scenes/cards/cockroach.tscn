@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://k4u2jh6xyhwi"]
+
+[ext_resource type="PackedScene" uid="uid://dr68m8ihkigac" path="res://scenes/cards/base_card.tscn" id="1_ssc3t"]
+[ext_resource type="Texture2D" uid="uid://bmhsajwu0x87k" path="res://resources/sprites/units/roach/roach_l1-p0_STATIC.png" id="2_w3210"]
+
+[node name="Card" instance=ExtResource("1_ssc3t")]
+card_name = "Cockroach"
+defense = 3
+attack = 1
+art_texture = ExtResource("2_w3210")
