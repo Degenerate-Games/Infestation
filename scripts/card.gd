@@ -2,6 +2,7 @@ extends Control
 
 var hoverable = true
 var hovering = false
+var selected = false
 var growing = false
 var shrinking = false
 var start_scale
@@ -100,19 +101,31 @@ func _process(delta):
 
 func _on_mouse_entered():
 	if !hoverable: return
-	$AnimationTimer.start(0.5)
-	hovering = true
-	growing = true
-	shrinking = false
-	start_position = global_position
-	start_scale = get_global_transform().get_scale().x
-	top_level = true
+	if Global.selected_card == null:
+		$AnimationTimer.start(0.5)
+		hovering = true
+		growing = true
+		shrinking = false
+		start_position = global_position
+		start_scale = get_global_transform().get_scale().x
+		top_level = true
 
 func _on_mouse_exited():
 	if !hoverable: return
+	if selected: return
 	$AnimationTimer.start(0.3)
 	hovering = false
 	growing = false
 	shrinking = true
 	start_position = global_position
 	start_scale = get_global_transform().get_scale().x
+
+
+func _on_gui_input(event):
+	if event.is_action_pressed("Select"):
+		if selected:
+			selected = false
+			Global.selected_card = null
+		else:
+			selected = true
+			Global.selected_card = self
