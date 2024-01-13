@@ -17,13 +17,17 @@ layout_mode = 3
 anchors_preset = 0
 scale = Vector2(0.55, 0.55)
 script = ExtResource("1_tj1kb")
+prestige_level = 2
+description = "This is a test description"
 
 [node name="CardBackground" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 224.0
 offset_bottom = 276.0
 texture = ExtResource("1_6rysh")
 
 [node name="CardName" type="Label" parent="."]
+layout_mode = 0
 offset_left = 13.0
 offset_top = 11.0
 offset_right = 145.0
@@ -33,6 +37,7 @@ theme_override_font_sizes/font_size = 31
 text = "Card Name"
 
 [node name="Level" type="Label" parent="."]
+layout_mode = 0
 offset_left = 202.0
 offset_top = 11.0
 offset_right = 242.0
@@ -44,6 +49,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PrestigeLabel" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 202.222
 offset_top = 11.1111
 offset_right = 242.222
@@ -51,6 +57,7 @@ offset_bottom = 51.1111
 texture = SubResource("AtlasTexture_ieuhq")
 
 [node name="Shield" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 14.5455
 offset_top = 45.4545
 offset_right = 46.5455
@@ -70,6 +77,7 @@ text = "1"
 vertical_alignment = 1
 
 [node name="Sword" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 85.4545
 offset_top = 45.4545
 offset_right = 117.455
@@ -89,6 +97,7 @@ text = "1"
 vertical_alignment = 1
 
 [node name="DescriptionBackground" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 7.27273
 offset_top = 243.636
 offset_right = 252.273
