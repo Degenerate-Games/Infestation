@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://20pfl85f27yc"]
+[gd_scene load_steps=10 format=3 uid="uid://20pfl85f27yc"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_07qrn"]
 [ext_resource type="PackedScene" uid="uid://b6nv7jv7kc6cq" path="res://scenes/cards/card_back.tscn" id="3_18r6f"]
 [ext_resource type="Texture2D" uid="uid://ckx8csjf55c6j" path="res://resources/textures/ui/buttons/redraw_pause_play.png" id="3_bpkd3"]
 [ext_resource type="Texture2D" uid="uid://cn6qhgvghdtui" path="res://resources/textures/ui/buttons/play_fastforward_fastforwardactive.png" id="4_1dim4"]
+[ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="5_2anwg"]
+
+[sub_resource type="Gradient" id="Gradient_kh3iq"]
+colors = PackedColorArray(0, 0.486275, 0, 1, 0.45098, 0.517647, 0.0156863, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fgfvx"]
+gradient = SubResource("Gradient_kh3iq")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikbn5"]
 atlas = ExtResource("3_bpkd3")
@@ -13,32 +20,66 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("4_1dim4")
 region = Rect2(0, 0, 32, 32)
 
-[node name="HUD" type="Node2D"]
+[node name="HUD" type="Node2D" node_paths=PackedStringArray("control_button_1", "control_button_2")]
 script = ExtResource("1_07qrn")
+control_button_1 = NodePath("MainContainer/ControlButtonContainer/ControlButton1")
+control_button_2 = NodePath("MainContainer/ControlButtonContainer/ControlButton2")
+
+[node name="MainContainer" type="MarginContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Wave" type="Label" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_2anwg")
+theme_override_font_sizes/font_size = 40
+text = " 01/10 "
+
+[node name="WaveBackground" type="TextureRect" parent="MainContainer/Wave"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_fgfvx")
+expand_mode = 2
+
+[node name="ControlButtonContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ControlButton1" type="TextureRect" parent="MainContainer/ControlButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_ikbn5")
+
+[node name="ControlButton2" type="TextureRect" parent="MainContainer/ControlButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_ntp2v")
+
+[node name="DiscardPile" parent="." instance=ExtResource("3_18r6f")]
+offset_left = 20.0
+offset_top = 431.0
+offset_right = 20.0
+offset_bottom = 431.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+card_name = "Infestation"
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(555, 508)
 
-[node name="DiscardPile" parent="." instance=ExtResource("3_18r6f")]
-offset_left = 35.0
-offset_top = 437.0
-offset_right = 35.0
-offset_bottom = 437.0
-card_name = "Infestation"
-
-[node name="ControlButton1" type="TextureRect" parent="."]
-offset_left = 1043.0
-offset_top = 597.0
-offset_right = 1083.0
-offset_bottom = 637.0
-texture = SubResource("AtlasTexture_ikbn5")
-
-[node name="ControlButton2" type="TextureRect" parent="."]
-offset_left = 1096.0
-offset_top = 597.0
-offset_right = 1136.0
-offset_bottom = 637.0
-texture = SubResource("AtlasTexture_ntp2v")
-
-[connection signal="gui_input" from="ControlButton1" to="." method="_on_control_button_1_gui_input"]
-[connection signal="gui_input" from="ControlButton2" to="." method="_on_control_button_2_gui_input"]
+[connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton1" to="." method="_on_control_button_1_gui_input"]
+[connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton2" to="." method="_on_control_button_2_gui_input"]

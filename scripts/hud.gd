@@ -8,6 +8,16 @@ var deck: Array[PackedScene]
 var hand: Array
 @export var card_width: float = 256.0
 @export var current_phase: PHASE = PHASE.DRAW
+var current_wave = 1:
+	get:
+		return current_wave
+	set(value):
+		current_wave = value
+		$Wave.text = " " + ("0" if current_wave - 10 < 0 else "") + str(current_wave) + "/" + str(wave_count) + " "
+var wave_count = 10
+@export_category("Node References")
+@export var control_button_1: TextureRect
+@export var control_button_2: TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -68,21 +78,21 @@ func remove_card_from_hand(card):
 
 func _on_control_button_1_gui_input(event):
 	if event.is_action_pressed("Select"):
-		match $ControlButton1.texture.region.position.x:
+		match control_button_1.texture.region.position.x:
 			0.0:
-				$ControlButton1.texture.region.position.x = 32
+				control_button_1.texture.region.position.x = 32
 			32.0:
-				$ControlButton1.texture.region.position.x = 64
+				control_button_1.texture.region.position.x = 64
 			64.0:
-				$ControlButton1.texture.region.position.x = 32
+				control_button_1.texture.region.position.x = 32
 
 
 func _on_control_button_2_gui_input(event):
 	if event.is_action_pressed("Select"):
-		match $ControlButton2.texture.region.position.x:
+		match control_button_2.texture.region.position.x:
 			0.0:
-				$ControlButton2.texture.region.position.x = 32
+				control_button_2.texture.region.position.x = 32
 			32.0:
-				$ControlButton2.texture.region.position.x = 64
+				control_button_2.texture.region.position.x = 64
 			64.0:
-				$ControlButton2.texture.region.position.x = 32
+				control_button_2.texture.region.position.x = 32
