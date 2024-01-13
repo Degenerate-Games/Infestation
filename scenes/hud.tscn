@@ -1,13 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://20pfl85f27yc"]
+[gd_scene load_steps=3 format=3 uid="uid://20pfl85f27yc"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_07qrn"]
-[ext_resource type="PackedScene" uid="uid://k4u2jh6xyhwi" path="res://scenes/cards/cockroach.tscn" id="2_bgbhs"]
 [ext_resource type="PackedScene" uid="uid://b6nv7jv7kc6cq" path="res://scenes/cards/card_back.tscn" id="3_18r6f"]
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_07qrn")
-base_deck = Array[PackedScene]([ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs")])
-hand_size_limit = 5
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(555, 508)

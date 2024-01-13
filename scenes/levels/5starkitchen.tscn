@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://chd535ig1s33b"]
+[gd_scene load_steps=4 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
 [ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="2_heg63"]
+[ext_resource type="PackedScene" uid="uid://k4u2jh6xyhwi" path="res://scenes/cards/cockroach.tscn" id="3_q2k55"]
 
 [node name="Level" type="Node2D"]
 
@@ -13,3 +14,5 @@ texture = ExtResource("1_wvugk")
 stretch_mode = 1
 
 [node name="HUD" parent="." instance=ExtResource("2_heg63")]
+base_deck = Array[PackedScene]([ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55")])
+hand_size_limit = 3
