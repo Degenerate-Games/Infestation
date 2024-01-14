@@ -1,11 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://chd535ig1s33b"]
+[gd_scene load_steps=17 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
 [ext_resource type="Texture2D" uid="uid://dk5kqbw4fypxh" path="res://resources/textures/table/mapShadow.png" id="2_5d8ir"]
 [ext_resource type="Texture2D" uid="uid://dvt5iueuo0b56" path="res://resources/textures/table/tableBG.png" id="2_647mx"]
-[ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="2_heg63"]
 [ext_resource type="Texture2D" uid="uid://4cjvvg0loiyb" path="res://resources/textures/5star/5star_wall.png" id="2_jef5x"]
-[ext_resource type="PackedScene" uid="uid://k4u2jh6xyhwi" path="res://scenes/cards/cockroach.tscn" id="3_q2k55"]
 [ext_resource type="Texture2D" uid="uid://pnh6r7or8uit" path="res://resources/sprites/enemies/structures/hotbar/hotbar_a.png" id="7_kt8o8"]
 [ext_resource type="Texture2D" uid="uid://b4ua00aos71si" path="res://resources/sprites/enemies/structures/sink/sink_static.png" id="8_6i0mi"]
 [ext_resource type="Texture2D" uid="uid://bawnermbe2a5n" path="res://resources/sprites/enemies/structures/salad bar/saladbar_a.png" id="9_litau"]
@@ -15,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/Manager.png" id="13_cvu1c"]
 [ext_resource type="Texture2D" uid="uid://bfq5b4m61ogms" path="res://resources/sprites/units/roach/roach_l1-p0.png" id="14_xb6x7"]
 [ext_resource type="Texture2D" uid="uid://cclp178xjxloe" path="res://resources/sprites/units/Rat/rat_l1-p0.png" id="15_jm3o5"]
+[ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="16_42xr7"]
 [ext_resource type="Texture2D" uid="uid://bjjiqt0mdq4yg" path="res://resources/sprites/units/mouse/mouse_l1-p0.png" id="16_g7306"]
 [ext_resource type="Texture2D" uid="uid://cxggmuw6mrxrt" path="res://resources/sprites/units/bird/bird_l1-p0.png" id="17_aggw5"]
 
@@ -42,11 +41,6 @@ position = Vector2(384.5, 366.5)
 scale = Vector2(3.10938, 3.05417)
 texture = ExtResource("2_5d8ir")
 
-[node name="HUD" parent="." instance=ExtResource("2_heg63")]
-texture_filter = 1
-base_deck = Array[PackedScene]([ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55"), ExtResource("3_q2k55")])
-hand_size_limit = 3
-
 [node name="TableBg" type="Sprite2D" parent="."]
 z_index = -2
 texture_filter = 1
@@ -54,7 +48,7 @@ position = Vector2(576, 324.5)
 scale = Vector2(3.60625, 2.7125)
 texture = ExtResource("2_647mx")
 
-[node name="Set Dressing-Delete later" type="Node" parent="."]
+[node name="Set Dressing-Delete later" type="Node2D" parent="."]
 
 [node name="HotbarA" type="Sprite2D" parent="Set Dressing-Delete later"]
 texture_filter = 1
@@ -175,3 +169,5 @@ position = Vector2(395, 477)
 rotation = -0.575959
 scale = Vector2(2, 2)
 texture = ExtResource("17_aggw5")
+
+[node name="HUD" parent="." instance=ExtResource("16_42xr7")]
