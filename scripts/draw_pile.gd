@@ -16,6 +16,8 @@ extends Control
 			$Art.texture = value
 		art_texture = value
 
+@export_category("Decks")
+@export var cards: Dictionary
 @export var base_deck: Array[PackedScene]
 var deck: Array[PackedScene]
 
@@ -28,8 +30,19 @@ func _ready():
 func _process(delta):
 	pass
 
-func reload_deck():
-	deck = base_deck.duplicate(true)
+func reload_deck(from_draw_pile: bool = false):
+	deck = []
+	if from_draw_pile:
+		var discard_pile = Global.HUD.discard_pile.discard_pile.duplicate(true)
+		await Global.HUD.empty_discard_pile()
+		for card in discard_pile:
+			var card_scene: PackedScene
+			match card.card_name:
+				"Cockroach":
+					card_scene = load(cards["Cockroach"])
+			deck.append(card_scene)
+	else:
+		deck = base_deck.duplicate(true)
 	shuffle_deck()
 
 func shuffle_deck():
@@ -37,4 +50,6 @@ func shuffle_deck():
 	deck.shuffle()
 
 func draw_card():
+	if deck.size() == 0:
+		await reload_deck(true)
 	return deck.pop_back()
