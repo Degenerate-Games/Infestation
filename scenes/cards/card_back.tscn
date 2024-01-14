@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6nv7jv7kc6cq"]
 
-[ext_resource type="Script" path="res://scripts/discard_pile.gd" id="1_ch4aq"]
+[ext_resource type="Script" path="res://scripts/draw_pile.gd" id="1_svb5a"]
 [ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="2_6arck"]
 [ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="3_312wa"]
 
@@ -8,7 +8,7 @@
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(0.55, 0.55)
-script = ExtResource("1_ch4aq")
+script = ExtResource("1_svb5a")
 
 [node name="CardBackground" type="TextureRect" parent="."]
 layout_mode = 0

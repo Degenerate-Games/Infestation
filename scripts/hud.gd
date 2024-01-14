@@ -2,8 +2,6 @@ extends Node2D
 
 enum PHASE {DRAW, PLAY}
 
-@export var base_deck: Array[PackedScene]
-var deck: Array[PackedScene]
 @export var hand_size_limit: int
 var hand: Array
 @export var card_width: float = 256.0
@@ -13,24 +11,32 @@ var current_wave = 1:
 		return current_wave
 	set(value):
 		current_wave = value
-		$Wave.text = " " + ("0" if current_wave - 10 < 0 else "") + str(current_wave) + "/" + str(wave_count) + " "
+		wave_display.text = " " + ("0" if current_wave - 10 < 0 else "") + str(current_wave) + "/" + str(wave_count) + " "
 var wave_count = 10
 @export_category("Node References")
+@export var wave_display: Label
+@export var draw_pile: Control
+@export var discard_pile: Node2D
+@export var round_timer: Control
 @export var control_button_1: TextureRect
 @export var control_button_2: TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	deck = base_deck.duplicate(true)
-	shuffle_deck()
+	draw_pile.reload_deck()
 	hand = []
 	for i in hand_size_limit:
 		draw_card()
-	print(hand)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_hand_positions()
+	match current_phase:
+		PHASE.DRAW:
+			
+			pass
+		PHASE.PLAY:
+			pass
 	
 func update_hand_positions():
 	var hand_count = hand.size()
@@ -41,10 +47,6 @@ func update_hand_positions():
 		if not (current_card.growing or current_card.shrinking or current_card.hovering):
 			current_card.default_position = $Hand.global_position + Vector2((i * card_width / scl) - shift, 0)
 
-func shuffle_deck():
-	randomize()
-	deck.shuffle()
-
 func draw_card():
 	#if deck.size() == 0:
 		#deck = base_deck.duplicate(true)
@@ -52,7 +54,7 @@ func draw_card():
 		#for card in hand:
 			#remove_card_from_deck(card)
 	
-	var card = deck.pop_back()
+	var card = draw_pile.draw_card()
 	card = card.instantiate()
 	card.name = card.card_name
 	card.hoverable = true
@@ -69,12 +71,6 @@ func remove_card_from_hand(card):
 		if hand[i] == card:
 			var c = hand.pop_at(i)
 			c.queue_free()
-			
-#func remove_card_from_deck(card):
-	#for i in deck.size():
-		#if deck[i] == card:
-			#deck.pop_at(i)
-
 
 func _on_control_button_1_gui_input(event):
 	if event.is_action_pressed("Select"):
@@ -85,7 +81,6 @@ func _on_control_button_1_gui_input(event):
 				control_button_1.texture.region.position.x = 64
 			64.0:
 				control_button_1.texture.region.position.x = 32
-
 
 func _on_control_button_2_gui_input(event):
 	if event.is_action_pressed("Select"):
