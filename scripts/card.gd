@@ -16,6 +16,7 @@ var default_position: Vector2:
 		default_position = value
 		global_position = value
 var destination: Vector2 = Vector2.ZERO
+var animation_timer
 
 @export_category("Card Data")
 @export var card_name: String = "Card Name":
@@ -79,6 +80,7 @@ func _ready():
 	if $Sword/Attack: $Sword/Attack.text = str(attack)
 	if $Art: $Art.texture = art_texture
 	if $DescriptionBackground/Description: $DescriptionBackground/Description.text = description
+	animation_timer = $AnimationTimer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -102,6 +104,13 @@ func _process(delta):
 	elif destination != Vector2.ZERO:
 		global_position = global_position.move_toward(destination, delta * 1000)
 		scale = scale.move_toward(Vector2(default_scale, default_scale), delta * 1000)
+		if position == destination and scale.x == default_scale:
+			$AnimationTimer.stop()
+			$AnimationTimer.emit_signal("timeout")
+
+func animate():
+	start_scale = get_global_transform().get_scale().x
+	$AnimationTimer.start(2.0)
 
 func _on_mouse_entered():
 	if !hoverable: return
@@ -125,15 +134,11 @@ func _on_mouse_exited():
 	start_position = global_position
 	start_scale = get_global_transform().get_scale().x
 
-
 func _on_gui_input(event):
 	if event.is_action_pressed("Select"):
 		if selected:
 			Global.selected_card = null
-			get_parent().remove_child(self)
-			Global.HUD.discard_pile.discard_card(self)
-			start_scale = get_global_transform().get_scale().x
-			$AnimationTimer.start(2.0)
+			Global.HUD.discard_card(self)
 		else:
 			selected = true
 			Global.selected_card = self
