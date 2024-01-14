@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://20pfl85f27yc"]
+[gd_scene load_steps=14 format=3 uid="uid://20pfl85f27yc"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_07qrn"]
+[ext_resource type="PackedScene" uid="uid://k4u2jh6xyhwi" path="res://scenes/cards/cockroach.tscn" id="2_bgbhs"]
 [ext_resource type="PackedScene" uid="uid://b6nv7jv7kc6cq" path="res://scenes/cards/card_back.tscn" id="3_18r6f"]
 [ext_resource type="Texture2D" uid="uid://ckx8csjf55c6j" path="res://resources/textures/ui/buttons/redraw_pause_play.png" id="3_bpkd3"]
 [ext_resource type="Texture2D" uid="uid://cn6qhgvghdtui" path="res://resources/textures/ui/buttons/play_fastforward_fastforwardactive.png" id="4_1dim4"]
 [ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="5_2anwg"]
+[ext_resource type="Script" path="res://scripts/discard_pile.gd" id="6_cvs4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikbn5"]
 atlas = ExtResource("3_bpkd3")
@@ -26,17 +28,20 @@ colors = PackedColorArray(0.00784314, 0.486275, 0, 1, 0.45098, 0.517647, 0.01568
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0qnfp"]
 gradient = SubResource("Gradient_2dq6h")
 
-[node name="HUD" type="Node2D" node_paths=PackedStringArray("wave_display", "discard_pile", "control_button_1", "control_button_2")]
+[node name="HUD" type="Node2D" node_paths=PackedStringArray("wave_display", "draw_pile", "discard_pile", "round_timer", "control_button_1", "control_button_2")]
 script = ExtResource("1_07qrn")
+hand_size_limit = 3
 wave_display = NodePath("MainContainer/Status Container/Wave")
+draw_pile = NodePath("DrawPile")
 discard_pile = NodePath("DiscardPile")
+round_timer = NodePath("MainContainer/Status Container/TimerDisplay")
 control_button_1 = NodePath("MainContainer/ControlButtonContainer/ControlButton1")
 control_button_2 = NodePath("MainContainer/ControlButtonContainer/ControlButton2")
 
 [node name="MainContainer" type="MarginContainer" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
@@ -107,7 +112,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_0qnfp")
 expand_mode = 1
 
-[node name="DiscardPile" parent="." instance=ExtResource("3_18r6f")]
+[node name="DrawPile" parent="." instance=ExtResource("3_18r6f")]
 offset_left = 20.0
 offset_top = 431.0
 offset_right = 20.0
@@ -115,9 +120,14 @@ offset_bottom = 431.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 card_name = "Infestation"
+base_deck = Array[PackedScene]([ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs")])
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(555, 508)
+
+[node name="DiscardPile" type="Marker2D" parent="."]
+position = Vector2(20, 200)
+script = ExtResource("6_cvs4j")
 
 [connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton1" to="." method="_on_control_button_1_gui_input"]
 [connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton2" to="." method="_on_control_button_2_gui_input"]
