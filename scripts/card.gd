@@ -15,7 +15,7 @@ var default_position: Vector2:
 	set(value):
 		default_position = value
 		global_position = value
-var vertical_translation: Vector2 = Vector2.UP * 150
+var destination: Vector2 = Vector2.ZERO
 
 @export_category("Card Data")
 @export var card_name: String = "Card Name":
@@ -89,15 +89,19 @@ func _process(delta):
 			top_level = false
 		growing = false
 		shrinking = false
+		destination = Vector2.ZERO
 	
 	if growing:
-		global_position = Global.lerpvec2(start_position, default_position + vertical_translation, weight)
+		global_position = Global.lerpvec2(start_position, destination, weight)
 		var scl = lerpf(start_scale, full_scale, weight)
 		scale = Vector2(scl, scl)
 	elif shrinking:
 		global_position = Global.lerpvec2(start_position, default_position, weight)
 		var scl = lerpf(start_scale, default_scale, weight)
 		scale = Vector2(scl, scl)
+	elif destination != Vector2.ZERO:
+		global_position = global_position.move_toward(destination, delta * 1000)
+		scale = scale.move_toward(Vector2(default_scale, default_scale), delta * 1000)
 
 func _on_mouse_entered():
 	if !hoverable: return
@@ -108,6 +112,7 @@ func _on_mouse_entered():
 		shrinking = false
 		start_position = global_position
 		start_scale = get_global_transform().get_scale().x
+		destination = default_position + Vector2.UP * 150
 		top_level = true
 
 func _on_mouse_exited():
@@ -124,8 +129,11 @@ func _on_mouse_exited():
 func _on_gui_input(event):
 	if event.is_action_pressed("Select"):
 		if selected:
-			selected = false
 			Global.selected_card = null
+			get_parent().remove_child(self)
+			Global.HUD.discard_pile.discard_card(self)
+			start_scale = get_global_transform().get_scale().x
+			$AnimationTimer.start(2.0)
 		else:
 			selected = true
 			Global.selected_card = self
