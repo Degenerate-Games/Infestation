@@ -28,7 +28,8 @@ var discarding_cards: int = 0:
 @export var draw_pile: Control
 @export var discard_pile: Node2D
 @export var hand_node: Node2D
-@export var round_timer: Control
+@export var timer_display: Control
+@export var round_timer: Timer
 @export var control_button_1: TextureRect
 @export var control_button_2: TextureRect
 
@@ -41,6 +42,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_hand_positions()
+	if current_phase == PHASE.PLAY:
+		update_timer()
 	match current_phase:
 		PHASE.DRAW:
 			pass
@@ -55,6 +58,9 @@ func update_hand_positions():
 		var current_card = hand[i]
 		if not current_card.animating:
 			current_card.hand_position = $Hand.global_position + Vector2((i * card_width / scl) - shift, 0)
+
+func update_timer():
+	timer_display.text = " " + str(ceil(round_timer.time_left)) + " "
 
 func draw_card():
 	var card = await draw_pile.draw_card()
@@ -113,8 +119,13 @@ func _on_control_button_1_gui_input(event):
 					can_redraw = false
 			32.0:
 				control_button_1.texture.region.position.x = 64
+				round_timer.set_paused(true)
 			64.0:
 				control_button_1.texture.region.position.x = 32
+				if round_timer.is_paused():
+					round_timer.set_paused(false)
+				else:
+					round_timer.start()
 
 func _on_control_button_2_gui_input(event):
 	if event.is_action_pressed("Select"):
@@ -122,7 +133,11 @@ func _on_control_button_2_gui_input(event):
 			0.0:
 				control_button_1.texture.region.position.x = 32
 				control_button_2.texture.region.position.x = 32
+				current_phase = PHASE.PLAY
+				round_timer.start()
 			32.0:
 				control_button_2.texture.region.position.x = 64
+				Engine.set_time_scale(2.0)
 			64.0:
 				control_button_2.texture.region.position.x = 32
+				Engine.set_time_scale(1.0)
