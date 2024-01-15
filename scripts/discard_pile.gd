@@ -14,9 +14,9 @@ func _process(delta):
 func discard_card(card):
 	card.in_hand = false
 	card.animate(global_position, card.default_scale)
+	await card.finished_animating
 	discard_pile.append(card)
-	Global.HUD.hand_node.remove_child(card)
-	add_child(card)
+	card.reparent(self)
 	Global.HUD.discarding_cards -= 1
 
 func empty():

@@ -1,5 +1,7 @@
 extends Control
 
+signal finished_animating
+
 var in_hand = false
 var hovering = false
 var selected = false
@@ -79,7 +81,8 @@ func _process(delta):
 		scale = scale.move_toward(destination_scale, delta * 1000)
 		if global_position == destination_position and scale == destination_scale:
 			animating = false
-	elif !hovering:
+			finished_animating.emit()
+	elif in_hand and !hovering:
 		if global_position != hand_position:
 			animate(hand_position, default_scale)
 
@@ -87,7 +90,6 @@ func animate(dest: Vector2, dest_scale: Vector2):
 	destination_position = dest
 	destination_scale = dest_scale
 	animating = true
-	print("start animating")
 
 func _on_mouse_entered():
 	if animating: return
@@ -108,7 +110,8 @@ func _on_gui_input(event):
 	if event.is_action_pressed("Select"):
 		if selected:
 			Global.selected_card = null
-			#Global.HUD.discard_card(self)
+			selected = false
+			Global.HUD.discard_card(self)
 		else:
 			selected = true
 			Global.selected_card = self

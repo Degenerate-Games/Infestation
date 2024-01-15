@@ -85,14 +85,14 @@ func remove_card_from_hand_index(card_index: int, free: bool = true):
 		return c
 
 func discard_card(card):
-	await discard_pile.discard_card(card)
+	discard_pile.discard_card(card)
 	remove_card_from_hand(card, false)
 
 func discard_hand():
 	if hand.size() == 0:
 		finished_discarding.emit()
 	while hand.size() > 0:
-		await discard_card(hand.pop_back())
+		discard_card(hand.pop_back())
 		discarding_cards += 1
 
 func empty_discard_pile():
@@ -109,7 +109,6 @@ func _on_control_button_1_gui_input(event):
 				if can_redraw:
 					discard_hand()
 					await finished_discarding
-					print("ready to draw")
 					await draw_hand()
 					can_redraw = false
 			32.0:
