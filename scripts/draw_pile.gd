@@ -40,6 +40,12 @@ func reload_deck(from_draw_pile: bool = false):
 			match card.card_name:
 				"Cockroach":
 					card_scene = load(cards["Cockroach"])
+				"Mouse":
+					card_scene = load(cards["Mouse"])
+				"Rat":
+					card_scene = load(cards["Rat"])
+				"Bird":
+					card_scene = load(cards["Bird"])
 			deck.append(card_scene)
 	else:
 		deck = base_deck.duplicate(true)

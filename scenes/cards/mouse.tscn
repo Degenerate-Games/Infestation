@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0isjf7jafe5o"]
+
+[ext_resource type="PackedScene" uid="uid://dr68m8ihkigac" path="res://scenes/cards/base_card.tscn" id="1_kqud8"]
+[ext_resource type="Texture2D" uid="uid://bjjiqt0mdq4yg" path="res://resources/sprites/units/mouse/mouse_l1-p0.png" id="2_h1qkt"]
+
+[node name="Card" instance=ExtResource("1_kqud8")]
+card_name = "Mouse"
+defense = 4
+attack = 2
+art_texture = ExtResource("2_h1qkt")

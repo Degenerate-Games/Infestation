@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crxr0kvmsjs8r"]
+
+[ext_resource type="PackedScene" uid="uid://dr68m8ihkigac" path="res://scenes/cards/base_card.tscn" id="1_dh2h8"]
+[ext_resource type="Texture2D" uid="uid://cxggmuw6mrxrt" path="res://resources/sprites/units/bird/bird_l1-p0.png" id="2_aewfi"]
+
+[node name="Card" instance=ExtResource("1_dh2h8")]
+card_name = "Bird"
+defense = 2
+attack = 2
+art_texture = ExtResource("2_aewfi")

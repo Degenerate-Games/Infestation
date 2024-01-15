@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmiqoatk0yvyy"]
+
+[ext_resource type="PackedScene" uid="uid://dr68m8ihkigac" path="res://scenes/cards/base_card.tscn" id="1_mijda"]
+[ext_resource type="Texture2D" uid="uid://cclp178xjxloe" path="res://resources/sprites/units/Rat/rat_l1-p0.png" id="2_gp3dl"]
+
+[node name="Card" instance=ExtResource("1_mijda")]
+card_name = "Rat"
+defense = 3
+attack = 4
+art_texture = ExtResource("2_gp3dl")

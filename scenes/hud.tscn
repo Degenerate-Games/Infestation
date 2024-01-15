@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://20pfl85f27yc"]
+[gd_scene load_steps=17 format=3 uid="uid://20pfl85f27yc"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_07qrn"]
 [ext_resource type="PackedScene" uid="uid://k4u2jh6xyhwi" path="res://scenes/cards/cockroach.tscn" id="2_bgbhs"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cn6qhgvghdtui" path="res://resources/textures/ui/buttons/play_fastforward_fastforwardactive.png" id="4_1dim4"]
 [ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="5_2anwg"]
 [ext_resource type="Script" path="res://scripts/discard_pile.gd" id="6_cvs4j"]
+[ext_resource type="PackedScene" uid="uid://0isjf7jafe5o" path="res://scenes/cards/mouse.tscn" id="7_mi6s6"]
+[ext_resource type="PackedScene" uid="uid://cmiqoatk0yvyy" path="res://scenes/cards/rat.tscn" id="8_sowws"]
+[ext_resource type="PackedScene" uid="uid://crxr0kvmsjs8r" path="res://scenes/cards/bird.tscn" id="9_cm68x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikbn5"]
 atlas = ExtResource("3_bpkd3")
@@ -123,9 +126,12 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 card_name = "Infestation"
 cards = {
-"Cockroach": "res://scenes/cards/cockroach.tscn"
+"Bird": "res://scenes/cards/bird.tscn",
+"Cockroach": "res://scenes/cards/cockroach.tscn",
+"Mouse": "res://scenes/cards/mouse.tscn",
+"Rat": "res://scenes/cards/rat.tscn"
 }
-base_deck = Array[PackedScene]([ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("2_bgbhs")])
+base_deck = Array[PackedScene]([ExtResource("2_bgbhs"), ExtResource("2_bgbhs"), ExtResource("7_mi6s6"), ExtResource("8_sowws"), ExtResource("9_cm68x")])
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(555, 508)

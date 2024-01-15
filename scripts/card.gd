@@ -102,7 +102,7 @@ func _on_mouse_exited():
 	if selected: return
 	animate(hand_position, default_scale)
 	hovering = false
-	z_index = 0
+	z_index = 0 
 
 func _on_gui_input(event):
 	if event.is_action_pressed("Select"):
