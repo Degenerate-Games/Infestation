@@ -35,7 +35,7 @@ var discarding_cards: int = 0:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	draw_pile.reload_deck()
+	await draw_pile.reload_deck()
 	hand = []
 	await draw_hand()
 

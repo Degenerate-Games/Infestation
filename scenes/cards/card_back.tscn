@@ -4,16 +4,34 @@
 [ext_resource type="Texture2D" uid="uid://y5n6qje8qq1a" path="res://resources/textures/cards/background.png" id="2_6arck"]
 [ext_resource type="FontFile" uid="uid://dgrqljiryxl0j" path="res://resources/fonts/PixelifySans-VariableFont_wght.ttf" id="3_312wa"]
 
-[node name="Card" type="Control"]
+[node name="Card" type="Control" node_paths=PackedStringArray("left_card", "right_card")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(0.55, 0.55)
 script = ExtResource("1_svb5a")
+left_card = NodePath("CardBackground2")
+right_card = NodePath("CardBackground3")
+left_position = Vector2(0, 431)
+right_position = Vector2(40, 431)
+up_position = Vector2(10, 411)
+down_position = Vector2(30, 451)
 
-[node name="CardBackground" type="TextureRect" parent="."]
+[node name="CardBackground2" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 224.0
 offset_bottom = 276.0
+texture = ExtResource("2_6arck")
+
+[node name="CardBackground3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 276.0
+texture = ExtResource("2_6arck")
+
+[node name="CardBackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 358.0
 texture = ExtResource("2_6arck")
 
 [node name="CardName" type="Label" parent="."]

@@ -25,3 +25,4 @@ func empty():
 		last_card = discard_pile.pop_back()
 		last_card.in_hand = false
 		last_card.animate(Global.HUD.draw_pile.global_position, last_card.default_scale)
+	await last_card.finished_animating
