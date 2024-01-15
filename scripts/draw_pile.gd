@@ -34,7 +34,7 @@ func reload_deck(from_draw_pile: bool = false):
 	deck = []
 	if from_draw_pile:
 		var discard_pile = Global.HUD.discard_pile.discard_pile.duplicate(true)
-		await Global.HUD.empty_discard_pile()
+		Global.HUD.empty_discard_pile()
 		for card in discard_pile:
 			var card_scene: PackedScene
 			match card.card_name:
@@ -51,5 +51,5 @@ func shuffle_deck():
 
 func draw_card():
 	if deck.size() == 0:
-		await reload_deck(true)
+		reload_deck(true)
 	return deck.pop_back()

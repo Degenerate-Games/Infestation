@@ -36,14 +36,13 @@ var discarding_cards: int = 0:
 func _ready():
 	draw_pile.reload_deck()
 	hand = []
-	draw_hand()
+	await draw_hand()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_hand_positions()
 	match current_phase:
 		PHASE.DRAW:
-			
 			pass
 		PHASE.PLAY:
 			pass
@@ -54,15 +53,17 @@ func update_hand_positions():
 	var shift = (card_width / scl * hand_count / 2)
 	for i in hand.size():
 		var current_card = hand[i]
-		if not (current_card.growing or current_card.shrinking or current_card.hovering):
-			current_card.default_position = $Hand.global_position + Vector2((i * card_width / scl) - shift, 0)
+		if not current_card.animating:
+			current_card.hand_position = $Hand.global_position + Vector2((i * card_width / scl) - shift, 0)
 
 func draw_card():
 	var card = await draw_pile.draw_card()
 	card = card.instantiate()
 	card.name = card.card_name
-	card.hoverable = true
 	add_card_to_hand(card)
+	card.global_position = draw_pile.global_position
+	card.animate($Hand.global_position, card.default_scale)
+	card.in_hand = true
 
 func add_card_to_hand(card):
 	if hand.size() < hand_size_limit:
@@ -84,14 +85,14 @@ func remove_card_from_hand_index(card_index: int, free: bool = true):
 		return c
 
 func discard_card(card):
-	discard_pile.discard_card(card)
+	await discard_pile.discard_card(card)
 	remove_card_from_hand(card, false)
 
 func discard_hand():
 	if hand.size() == 0:
 		finished_discarding.emit()
 	while hand.size() > 0:
-		discard_card(hand.pop_back())
+		await discard_card(hand.pop_back())
 		discarding_cards += 1
 
 func empty_discard_pile():
@@ -99,7 +100,7 @@ func empty_discard_pile():
 
 func draw_hand():
 	for i in hand_size_limit:
-		draw_card()
+		await draw_card()
 
 func _on_control_button_1_gui_input(event):
 	if event.is_action_pressed("Select"):
@@ -109,7 +110,7 @@ func _on_control_button_1_gui_input(event):
 					discard_hand()
 					await finished_discarding
 					print("ready to draw")
-					draw_hand()
+					await draw_hand()
 					can_redraw = false
 			32.0:
 				control_button_1.texture.region.position.x = 64

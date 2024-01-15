@@ -1,22 +1,14 @@
 extends Control
 
-var hoverable = true
+var in_hand = false
 var hovering = false
 var selected = false
-var growing = false
-var shrinking = false
-var start_scale
-var default_scale
-var full_scale = 0.75
-var start_position
-var default_position: Vector2:
-	get:
-		return default_position
-	set(value):
-		default_position = value
-		global_position = value
-var destination: Vector2 = Vector2.ZERO
-var animation_timer
+var destination_scale: Vector2
+var default_scale: Vector2
+var full_scale: Vector2 = Vector2(0.75, 0.75)
+var destination_position: Vector2
+var hand_position: Vector2
+var animating: bool = false
 
 @export_category("Card Data")
 @export var card_name: String = "Card Name":
@@ -71,8 +63,7 @@ var animation_timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	default_position = global_position
-	default_scale = get_global_transform().get_scale().x
+	default_scale = get_global_transform().get_scale()
 	if $CardName: $CardName.text = card_name
 	if $PrestigeLabel: $PrestigeLabel.texture.region.position.x = prestige_level * 16.0
 	if $Level: $Level.text = str(level)
@@ -80,65 +71,44 @@ func _ready():
 	if $Sword/Attack: $Sword/Attack.text = str(attack)
 	if $Art: $Art.texture = art_texture
 	if $DescriptionBackground/Description: $DescriptionBackground/Description.text = description
-	animation_timer = $AnimationTimer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var weight = $AnimationTimer.get_wait_time() - $AnimationTimer.time_left
-	weight = remap(weight, 0.0, $AnimationTimer.get_wait_time(), 0.0, 1.0)
-	if weight == 1.0:
-		if shrinking:
-			top_level = false
-		growing = false
-		shrinking = false
-		destination = Vector2.ZERO
-	
-	if growing:
-		global_position = Global.lerpvec2(start_position, destination, weight)
-		var scl = lerpf(start_scale, full_scale, weight)
-		scale = Vector2(scl, scl)
-	elif shrinking:
-		global_position = Global.lerpvec2(start_position, default_position, weight)
-		var scl = lerpf(start_scale, default_scale, weight)
-		scale = Vector2(scl, scl)
-	elif destination != Vector2.ZERO:
-		global_position = global_position.move_toward(destination, delta * 1000)
-		scale = scale.move_toward(Vector2(default_scale, default_scale), delta * 1000)
-		if position == destination and scale.x == default_scale:
-			$AnimationTimer.stop()
-			$AnimationTimer.emit_signal("timeout")
+	if animating:
+		global_position = global_position.move_toward(destination_position, delta * 1000)
+		scale = scale.move_toward(destination_scale, delta * 1000)
+		if global_position == destination_position and scale == destination_scale:
+			animating = false
+	elif !hovering:
+		if global_position != hand_position:
+			animate(hand_position, default_scale)
 
-func animate():
-	start_scale = get_global_transform().get_scale().x
-	$AnimationTimer.start(2.0)
+func animate(dest: Vector2, dest_scale: Vector2):
+	destination_position = dest
+	destination_scale = dest_scale
+	animating = true
+	print("start animating")
 
 func _on_mouse_entered():
-	if !hoverable: return
+	if animating: return
+	if !in_hand: return
 	if Global.selected_card == null:
-		$AnimationTimer.start(0.5)
+		animate(global_position + Vector2.UP * 150, full_scale)
 		hovering = true
-		growing = true
-		shrinking = false
-		start_position = global_position
-		start_scale = get_global_transform().get_scale().x
-		destination = default_position + Vector2.UP * 150
-		top_level = true
+		z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 
 func _on_mouse_exited():
-	if !hoverable: return
+	if !in_hand: return
 	if selected: return
-	$AnimationTimer.start(0.3)
+	animate(hand_position, default_scale)
 	hovering = false
-	growing = false
-	shrinking = true
-	start_position = global_position
-	start_scale = get_global_transform().get_scale().x
+	z_index = 0
 
 func _on_gui_input(event):
 	if event.is_action_pressed("Select"):
 		if selected:
 			Global.selected_card = null
-			Global.HUD.discard_card(self)
+			#Global.HUD.discard_card(self)
 		else:
 			selected = true
 			Global.selected_card = self

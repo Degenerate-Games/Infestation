@@ -12,20 +12,16 @@ func _process(delta):
 	pass
 
 func discard_card(card):
-	card.destination = global_position
-	card.hoverable = false
-	card.animate()
+	card.in_hand = false
+	card.animate(global_position, card.default_scale)
 	discard_pile.append(card)
-	await card.animation_timer.timeout
 	Global.HUD.hand_node.remove_child(card)
 	add_child(card)
-	card.position = Vector2.ZERO
 	Global.HUD.discarding_cards -= 1
 
 func empty():
+	var last_card
 	while discard_pile.size() > 0:
-		var card = discard_pile.pop_back()
-		card.destination = Global.HUD.draw_pile.position
-		card.hoverable = false
-		card.animate()
-		await card.animation_timer.timeout
+		last_card = discard_pile.pop_back()
+		last_card.in_hand = false
+		last_card.animate(Global.HUD.draw_pile.global_position, last_card.default_scale)
