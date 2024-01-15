@@ -123,9 +123,6 @@ theme_override_font_sizes/font_size = 13
 text = "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet "
 autowrap_mode = 2
 
-[node name="AnimationTimer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
