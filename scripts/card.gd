@@ -62,6 +62,7 @@ var animating: bool = false
 		if $DescriptionBackground/Description:
 			$DescriptionBackground/Description.text = value
 		description = value
+@export var play_actions: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -91,6 +92,12 @@ func animate(dest: Vector2, dest_scale: Vector2):
 	destination_scale = dest_scale
 	animating = true
 
+func play_card():
+	for key in play_actions.keys():
+		match key:
+			"queue_unit":
+				Global.HUD.queue_unit(play_actions[key])
+
 func _on_mouse_entered():
 	if animating: return
 	if !in_hand: return
@@ -111,6 +118,7 @@ func _on_gui_input(event):
 		if selected:
 			Global.selected_card = null
 			selected = false
+			play_card()
 			Global.HUD.discard_card(self)
 		else:
 			selected = true

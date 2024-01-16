@@ -8,3 +8,6 @@ card_name = "Rat"
 defense = 3
 attack = 4
 art_texture = ExtResource("2_gp3dl")
+play_actions = {
+"queue_unit": "res://scenes/units/rat.tscn"
+}

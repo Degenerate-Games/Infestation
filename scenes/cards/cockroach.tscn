@@ -9,6 +9,9 @@ card_name = "Cockroach"
 defense = 3
 attack = 1
 art_texture = ExtResource("2_w3210")
+play_actions = {
+"queue_unit": "res://scenes/units/cockroach.tscn"
+}
 
 [node name="CardBackground" parent="." index="0"]
 texture_filter = 1

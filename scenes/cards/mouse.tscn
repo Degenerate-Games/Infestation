@@ -8,3 +8,6 @@ card_name = "Mouse"
 defense = 4
 attack = 2
 art_texture = ExtResource("2_h1qkt")
+play_actions = {
+"queue_unit": "res://scenes/units/mouse.tscn"
+}
