@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://djf1afj6m6qbp"]
+
+[ext_resource type="Script" path="res://scripts/units/cockroach.gd" id="1_6tex4"]
+[ext_resource type="Texture2D" uid="uid://bfq5b4m61ogms" path="res://resources/sprites/units/roach/roach_l1-p0.png" id="1_gh02o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
+radius = 17.0
+height = 76.0
+
+[node name="Cockroach" type="CharacterBody2D"]
+script = ExtResource("1_6tex4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_77vij")
+
+[node name="CockroachSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_gh02o")
