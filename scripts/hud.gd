@@ -4,6 +4,8 @@ enum PHASE {DRAW, PLAY}
 
 signal finished_discarding
 
+var unit_queue: Array = []
+@export var queue_offset: Vector2
 @export var hand_size_limit: int
 var hand: Array
 @export var card_width: float = 256.0
@@ -28,6 +30,7 @@ var discarding_cards: int = 0:
 @export var draw_pile: Control
 @export var discard_pile: Node2D
 @export var hand_node: Node2D
+@export var queue: Node2D
 @export var timer_display: Control
 @export var round_timer: Timer
 @export var control_button_1: TextureRect
@@ -107,6 +110,16 @@ func empty_discard_pile():
 func draw_hand():
 	for i in hand_size_limit:
 		await draw_card()
+
+
+func queue_unit(unit_path):
+	var unit = load(unit_path).instantiate()
+	unit.name = "Unit" + str(unit_queue.size())
+	unit.paused = true
+	unit_queue.append(unit)
+	queue.add_child(unit)
+	unit.position += queue_offset
+	queue_offset.y += 50
 
 func _on_control_button_1_gui_input(event):
 	if event.is_action_pressed("Select"):
