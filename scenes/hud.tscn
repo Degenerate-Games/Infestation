@@ -145,6 +145,7 @@ position = Vector2(20, 200)
 script = ExtResource("6_cvs4j")
 
 [node name="Queue" type="Node2D" parent="."]
+process_mode = 1
 position = Vector2(1000, 75)
 
 [node name="QueueLabel" type="Label" parent="Queue"]
