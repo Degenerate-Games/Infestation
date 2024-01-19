@@ -114,13 +114,25 @@ func draw_hand():
 func queue_unit(unit_path, unit_data):
 	var unit = load(unit_path).instantiate()
 	unit.name = "Unit" + str(unit_queue.size())
-	unit.paused = true
+	unit.moving = false
 	unit.attack = unit_data.attack
 	unit.defense = unit_data.defense
 	unit_queue.append(unit)
 	queue.add_child(unit)
 	unit.position += queue_offset
 	queue_offset.y += 50
+
+func play():
+	var delay = 1
+	for unit in unit_queue:
+		unit.delayed_spawn(delay)
+		delay += 1
+
+func pause():
+	get_tree().paused = true
+
+func resume():
+	get_tree().paused = false
 
 func _on_control_button_1_gui_input(event):
 	if event.is_action_pressed("Select"):
@@ -133,9 +145,11 @@ func _on_control_button_1_gui_input(event):
 					can_redraw = false
 			32.0:
 				control_button_1.texture.region.position.x = 64
+				pause()
 				round_timer.set_paused(true)
 			64.0:
 				control_button_1.texture.region.position.x = 32
+				resume()
 				if round_timer.is_paused():
 					round_timer.set_paused(false)
 				else:
@@ -148,6 +162,7 @@ func _on_control_button_2_gui_input(event):
 				control_button_1.texture.region.position.x = 32
 				control_button_2.texture.region.position.x = 32
 				current_phase = PHASE.PLAY
+				play()
 				round_timer.start()
 			32.0:
 				control_button_2.texture.region.position.x = 64
