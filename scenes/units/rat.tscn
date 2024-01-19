@@ -7,8 +7,10 @@
 radius = 7.0
 height = 32.0
 
-[node name="Rat" type="CharacterBody2D"]
+[node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer")]
+motion_mode = 1
 script = ExtResource("1_n8jg5")
+spawn_timer = NodePath("SpawnTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -16,3 +18,6 @@ shape = SubResource("CapsuleShape2D_77vij")
 
 [node name="RatSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_fhq7p")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
