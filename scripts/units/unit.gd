@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(delta):
 	if paused: return
-	velocity = pick_direction() * SPEED
+	velocity = pick_direction() * SPEED * delta
 	print(velocity)
 	move_and_slide()
 

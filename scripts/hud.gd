@@ -43,7 +43,7 @@ func _ready():
 	await draw_hand()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	update_hand_positions()
 	if current_phase == PHASE.PLAY:
 		update_timer()
