@@ -111,11 +111,12 @@ func draw_hand():
 	for i in hand_size_limit:
 		await draw_card()
 
-
-func queue_unit(unit_path):
+func queue_unit(unit_path, unit_data):
 	var unit = load(unit_path).instantiate()
 	unit.name = "Unit" + str(unit_queue.size())
 	unit.paused = true
+	unit.attack = unit_data.attack
+	unit.defense = unit_data.defense
 	unit_queue.append(unit)
 	queue.add_child(unit)
 	unit.position += queue_offset

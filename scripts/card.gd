@@ -96,7 +96,7 @@ func play_card():
 	for key in play_actions.keys():
 		match key:
 			"queue_unit":
-				Global.HUD.queue_unit(play_actions[key])
+				Global.HUD.queue_unit(play_actions[key], self)
 
 func _on_mouse_entered():
 	if animating: return
