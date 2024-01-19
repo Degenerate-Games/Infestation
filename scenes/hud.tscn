@@ -32,6 +32,7 @@ colors = PackedColorArray(0.00784314, 0.486275, 0, 1, 0.45098, 0.517647, 0.01568
 gradient = SubResource("Gradient_2dq6h")
 
 [node name="HUD" type="Node2D" node_paths=PackedStringArray("wave_display", "draw_pile", "discard_pile", "hand_node", "queue", "timer_display", "round_timer", "control_button_1", "control_button_2")]
+process_mode = 3
 script = ExtResource("1_07qrn")
 queue_offset = Vector2(35, 50)
 hand_size_limit = 3
