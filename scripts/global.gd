@@ -13,3 +13,8 @@ func lerpvec2(from: Vector2, to: Vector2, weight: float):
 	temp.x = lerpf(from.x, to.x, weight)
 	temp.y = lerpf(from.y, to.y, weight)
 	return temp
+
+func get_random_target():
+	var targets = current_level.get_node("Enemies/Structures").get_children()
+	var target = targets[randi() % targets.size()]
+	return target
