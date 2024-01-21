@@ -8,6 +8,7 @@ card_name = "Bird"
 defense = 2
 attack = 2
 art_texture = ExtResource("2_aewfi")
+description = "Squak!"
 play_actions = {
 "queue_unit": "res://scenes/units/bird.tscn"
 }

@@ -9,6 +9,7 @@ card_name = "Cockroach"
 defense = 3
 attack = 1
 art_texture = ExtResource("2_w3210")
+description = "The nastiest of foes, could survive just about anything."
 play_actions = {
 "queue_unit": "res://scenes/units/cockroach.tscn"
 }
