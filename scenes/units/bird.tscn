@@ -8,6 +8,7 @@ radius = 13.0
 height = 26.0
 
 [node name="Bird" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer")]
+scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_klmhp")
 spawn_timer = NodePath("SpawnTimer")

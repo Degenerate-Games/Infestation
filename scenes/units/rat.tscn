@@ -8,6 +8,7 @@ radius = 7.0
 height = 32.0
 
 [node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer")]
+scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_n8jg5")
 spawn_timer = NodePath("SpawnTimer")

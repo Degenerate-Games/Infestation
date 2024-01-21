@@ -8,6 +8,7 @@ radius = 17.0
 height = 76.0
 
 [node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer")]
+scale = Vector2(0.5, 0.5)
 motion_mode = 1
 script = ExtResource("1_6tex4")
 spawn_timer = NodePath("SpawnTimer")
