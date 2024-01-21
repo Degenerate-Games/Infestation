@@ -171,3 +171,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("17_aggw5")
 
 [node name="HUD" parent="." instance=ExtResource("16_42xr7")]
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(254, 77)

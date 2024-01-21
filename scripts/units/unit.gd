@@ -24,5 +24,6 @@ func pick_direction():
 func delayed_spawn(delay):
 	spawn_timer.start(delay)
 	await spawn_timer.timeout
-	# TODO:: Teleport to spawn point
+	position = Vector2.ZERO
+	reparent(Global.current_level.get_node("Spawner"), false)
 	moving = true
