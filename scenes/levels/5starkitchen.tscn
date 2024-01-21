@@ -1,25 +1,21 @@
-[gd_scene load_steps=17 format=3 uid="uid://chd535ig1s33b"]
+[gd_scene load_steps=13 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
 [ext_resource type="Texture2D" uid="uid://dk5kqbw4fypxh" path="res://resources/textures/table/mapShadow.png" id="2_5d8ir"]
 [ext_resource type="Texture2D" uid="uid://dvt5iueuo0b56" path="res://resources/textures/table/tableBG.png" id="2_647mx"]
 [ext_resource type="Texture2D" uid="uid://4cjvvg0loiyb" path="res://resources/textures/5star/5star_wall.png" id="2_jef5x"]
-[ext_resource type="Texture2D" uid="uid://pnh6r7or8uit" path="res://resources/sprites/enemies/structures/hotbar/hotbar_a.png" id="7_kt8o8"]
-[ext_resource type="Texture2D" uid="uid://b4ua00aos71si" path="res://resources/sprites/enemies/structures/sink/sink_static.png" id="8_6i0mi"]
-[ext_resource type="Texture2D" uid="uid://bawnermbe2a5n" path="res://resources/sprites/enemies/structures/salad bar/saladbar_a.png" id="9_litau"]
-[ext_resource type="Texture2D" uid="uid://c2ae61xmkdwxf" path="res://resources/sprites/enemies/structures/stove/stove_static.png" id="10_nnti6"]
+[ext_resource type="PackedScene" uid="uid://ed8ryfbcomu5" path="res://scenes/enemies/structures/hot_bar.tscn" id="5_e4i87"]
+[ext_resource type="PackedScene" uid="uid://be2kqbinwshmy" path="res://scenes/enemies/structures/sink.tscn" id="6_or21f"]
+[ext_resource type="PackedScene" uid="uid://dji2do25n7okl" path="res://scenes/enemies/structures/salad_bar.tscn" id="7_ohvwu"]
+[ext_resource type="PackedScene" uid="uid://blb1hjo3mffpe" path="res://scenes/enemies/structures/stove.tscn" id="8_6giqj"]
 [ext_resource type="Texture2D" uid="uid://cpfrw0q3utqes" path="res://resources/sprites/enemies/troops/chef/chef_a.png" id="11_7ayj8"]
 [ext_resource type="Texture2D" uid="uid://bhr7t8ku2agbo" path="res://resources/sprites/enemies/troops/cook/cook_a_static.png" id="12_u4fhy"]
 [ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/Manager.png" id="13_cvu1c"]
-[ext_resource type="Texture2D" uid="uid://bfq5b4m61ogms" path="res://resources/sprites/units/roach/roach_l1-p0.png" id="14_xb6x7"]
-[ext_resource type="Texture2D" uid="uid://cclp178xjxloe" path="res://resources/sprites/units/Rat/rat_l1-p0.png" id="15_jm3o5"]
 [ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="16_42xr7"]
-[ext_resource type="Texture2D" uid="uid://bjjiqt0mdq4yg" path="res://resources/sprites/units/mouse/mouse_l1-p0.png" id="16_g7306"]
-[ext_resource type="Texture2D" uid="uid://cxggmuw6mrxrt" path="res://resources/sprites/units/bird/bird_l1-p0.png" id="17_aggw5"]
 
 [node name="Level" type="Node2D"]
 
-[node name="5 Star Background" type="TextureRect" parent="."]
+[node name="5StarFloor" type="TextureRect" parent="."]
 show_behind_parent = true
 texture_filter = 1
 offset_left = 177.0
@@ -28,18 +24,25 @@ offset_bottom = 605.0
 texture = ExtResource("1_wvugk")
 stretch_mode = 1
 
-[node name="5StarWall" type="Sprite2D" parent="5 Star Background"]
-texture_filter = 1
-position = Vector2(402.667, 302.5)
-scale = Vector2(3.36111, 3.36111)
-texture = ExtResource("2_jef5x")
-
-[node name="MapShadow" type="Sprite2D" parent="5 Star Background"]
+[node name="MapShadow" type="Sprite2D" parent="5StarFloor"]
 z_index = -1
 texture_filter = 1
 position = Vector2(384.5, 366.5)
 scale = Vector2(3.10938, 3.05417)
 texture = ExtResource("2_5d8ir")
+
+[node name="5StarWall" type="StaticBody2D" parent="5StarFloor"]
+position = Vector2(-177, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="5StarFloor/5StarWall"]
+texture_filter = 1
+position = Vector2(579.667, 302.5)
+scale = Vector2(3.36111, 3.36111)
+texture = ExtResource("2_jef5x")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="5StarFloor/5StarWall"]
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(255, 605, 175, 605, 175, 0, 985, 0, 985, 650, 175, 650, 175, 605, 905, 605, 905, 75, 255, 75)
 
 [node name="TableBg" type="Sprite2D" parent="."]
 z_index = -2
@@ -48,47 +51,39 @@ position = Vector2(576, 324.5)
 scale = Vector2(3.60625, 2.7125)
 texture = ExtResource("2_647mx")
 
-[node name="Set Dressing-Delete later" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="HotbarA" type="Sprite2D" parent="Set Dressing-Delete later"]
-texture_filter = 1
-position = Vector2(875, 450)
+[node name="Structures" type="Node2D" parent="Enemies"]
+
+[node name="HotBar" parent="Enemies/Structures" instance=ExtResource("5_e4i87")]
+position = Vector2(875, 451)
 rotation = 1.5708
 scale = Vector2(2, 2)
-texture = ExtResource("7_kt8o8")
 
-[node name="SinkStatic" type="Sprite2D" parent="Set Dressing-Delete later"]
-texture_filter = 1
-position = Vector2(545, 105)
+[node name="Sink" parent="Enemies/Structures" instance=ExtResource("6_or21f")]
+position = Vector2(607, 106)
 scale = Vector2(2, 2)
-texture = ExtResource("8_6i0mi")
 
-[node name="SinkStatic2" type="Sprite2D" parent="Set Dressing-Delete later"]
-texture_filter = 1
-position = Vector2(610, 105)
+[node name="Sink2" parent="Enemies/Structures" instance=ExtResource("6_or21f")]
+position = Vector2(544, 106)
 scale = Vector2(2, 2)
-texture = ExtResource("8_6i0mi")
 
-[node name="SaladbarA" type="Sprite2D" parent="Set Dressing-Delete later"]
-texture_filter = 1
+[node name="SaladBar" parent="Enemies/Structures" instance=ExtResource("7_ohvwu")]
 position = Vector2(875, 225)
 rotation = 1.5708
 scale = Vector2(2, 2)
-texture = ExtResource("9_litau")
 
-[node name="StoveStatic2" type="Sprite2D" parent="Set Dressing-Delete later"]
-texture_filter = 1
-position = Vector2(285, 280)
+[node name="Stove" parent="Enemies/Structures" instance=ExtResource("8_6giqj")]
+position = Vector2(284, 346)
 rotation = -1.5708
 scale = Vector2(2, 2)
-texture = ExtResource("10_nnti6")
 
-[node name="StoveStatic3" type="Sprite2D" parent="Set Dressing-Delete later"]
-texture_filter = 1
-position = Vector2(285, 345)
+[node name="Stove2" parent="Enemies/Structures" instance=ExtResource("8_6giqj")]
+position = Vector2(284, 281)
 rotation = -1.5708
 scale = Vector2(2, 2)
-texture = ExtResource("10_nnti6")
+
+[node name="Set Dressing-Delete later" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node" parent="Set Dressing-Delete later"]
 
@@ -118,57 +113,6 @@ position = Vector2(779, 511)
 rotation = -0.785398
 scale = Vector2(2, 2)
 texture = ExtResource("13_cvu1c")
-
-[node name="The bois" type="Node" parent="Set Dressing-Delete later"]
-
-[node name="RoachL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
-texture_filter = 1
-position = Vector2(771, 373)
-rotation = -0.71733
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_xb6x7")
-
-[node name="RoachL1-p1" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
-texture_filter = 1
-position = Vector2(719, 380)
-rotation = -1.07687
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_xb6x7")
-
-[node name="RoachL1-p2" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
-texture_filter = 1
-position = Vector2(735, 454)
-rotation = -0.359538
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_xb6x7")
-
-[node name="RatL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
-texture_filter = 1
-position = Vector2(421, 208)
-rotation = 0.598648
-scale = Vector2(2, 2)
-texture = ExtResource("15_jm3o5")
-
-[node name="MouseL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
-texture_filter = 1
-position = Vector2(737, 215)
-rotation = -0.958186
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("16_g7306")
-
-[node name="MouseL1-p1" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
-texture_filter = 1
-position = Vector2(671, 255)
-rotation = -1.67552
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("16_g7306")
-
-[node name="BirdL1-p0" type="Sprite2D" parent="Set Dressing-Delete later/The bois"]
-texture_filter = 1
-position = Vector2(395, 477)
-rotation = -0.575959
-scale = Vector2(2, 2)
-texture = ExtResource("17_aggw5")
 
 [node name="HUD" parent="." instance=ExtResource("16_42xr7")]
 
