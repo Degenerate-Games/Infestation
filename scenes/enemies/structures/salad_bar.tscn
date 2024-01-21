@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dji2do25n7okl"]
+
+[ext_resource type="Texture2D" uid="uid://bawnermbe2a5n" path="res://resources/sprites/enemies/structures/salad bar/saladbar_a.png" id="1_b4546"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt8pa"]
+size = Vector2(64, 32)
+
+[node name="SaladBar" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b4546")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vt8pa")
