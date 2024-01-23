@@ -25,6 +25,11 @@ var discarding_cards: int = 0:
 		discarding_cards = value
 		if value == 0:
 			finished_discarding.emit()
+var target: Node2D:
+	get:
+		return target
+	set(value):
+		target = value
 @export_category("Node References")
 @export var wave_display: Label
 @export var draw_pile: Control
@@ -127,6 +132,7 @@ func play():
 	for unit in unit_queue:
 		unit.delayed_spawn(delay)
 		delay += 1
+	target = null
 
 func pause():
 	get_tree().paused = true

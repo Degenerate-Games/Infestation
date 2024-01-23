@@ -26,7 +26,8 @@ func delayed_spawn(delay):
 	spawn_timer.start(delay)
 	await spawn_timer.timeout
 	position = Vector2.ZERO
+	target = Global.HUD.target
 	if target == null:
-		target = Global.get_random_target()
+		target = Global.get_random_target()	
 	reparent(Global.current_level.get_node("Spawner"), false)
 	moving = true
