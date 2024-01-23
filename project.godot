@@ -31,3 +31,10 @@ Select={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="background"
+2d_physics/layer_2="structures"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="units"
