@@ -55,7 +55,7 @@ var animating: bool = false
 		if $Art:
 			$Art.texture = value
 		art_texture = value
-@export var description: String = "":
+@export_multiline var description: String = "":
 	get:
 		return description
 	set(value):
@@ -97,6 +97,9 @@ func play_card():
 		match key:
 			"queue_unit":
 				Global.HUD.queue_unit(play_actions[key], self)
+			"manual_target":
+				Global.HUD.target = play_actions[key]
+
 
 func _on_mouse_entered():
 	if animating: return
