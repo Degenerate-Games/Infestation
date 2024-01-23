@@ -8,5 +8,5 @@ card_name = "Pheremone"
 art_texture = ExtResource("2_bxclr")
 description = "Special: Use this card on an enemy or structure to make your units focus on it for this wave."
 play_actions = {
-"manual_target": 1.0
+"manual_target": null
 }
