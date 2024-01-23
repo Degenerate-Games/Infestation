@@ -22,12 +22,13 @@ func pick_direction():
 		random_direction = random_direction.lerp(target_direction.normalized(), 0.5)
 	return random_direction
 
-func delayed_spawn(delay):
+func delayed_spawn(delay, trgt = null):
 	spawn_timer.start(delay)
 	await spawn_timer.timeout
 	position = Vector2.ZERO
-	target = Global.HUD.target
-	if target == null:
-		target = Global.get_random_target()	
+	if trgt == null:
+		target = Global.get_random_target()
+	else:
+		target = trgt	
 	reparent(Global.current_level.get_node("Spawner"), false)
 	moving = true
