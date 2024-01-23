@@ -130,7 +130,7 @@ func queue_unit(unit_path, unit_data):
 func play():
 	var delay = 1
 	for unit in unit_queue:
-		unit.delayed_spawn(delay)
+		unit.delayed_spawn(delay, target)
 		delay += 1
 	target = null
 
