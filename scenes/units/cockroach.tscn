@@ -7,12 +7,13 @@
 radius = 17.0
 height = 76.0
 
-[node name="Cockroach" type="CharacterBody2D"]
+[node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer")]
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_y0w7v")
+spawn_timer = NodePath("SpawnTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
