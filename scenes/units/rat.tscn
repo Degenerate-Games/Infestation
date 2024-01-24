@@ -20,6 +20,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
 [node name="RatSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_fhq7p")
 
 [node name="SpawnTimer" type="Timer" parent="."]
