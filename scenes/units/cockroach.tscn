@@ -1,11 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://djf1afj6m6qbp"]
+[gd_scene load_steps=9 format=3 uid="uid://djf1afj6m6qbp"]
 
-[ext_resource type="Texture2D" uid="uid://bfq5b4m61ogms" path="res://resources/sprites/units/roach/roach_l1-p0.png" id="1_gh02o"]
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_y0w7v"]
+[ext_resource type="Texture2D" uid="uid://cdchb4a2jxd8g" path="res://resources/sprites/units/roach/roach_l1_walk.png" id="2_r3pbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
 radius = 17.0
 height = 76.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v31m"]
+atlas = ExtResource("2_r3pbx")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ggc3"]
+atlas = ExtResource("2_r3pbx")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4bme"]
+atlas = ExtResource("2_r3pbx")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6wcc"]
+atlas = ExtResource("2_r3pbx")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oys1h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v31m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ggc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4bme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6wcc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer")]
 scale = Vector2(0.5, 0.5)
@@ -19,8 +55,12 @@ spawn_timer = NodePath("SpawnTimer")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
-[node name="CockroachSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_gh02o")
+[node name="CockroachSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_oys1h")
+autoplay = "default"
+frame_progress = 0.26305
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
