@@ -1,0 +1,43 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://b1oshruno1y6j"]
+
+[sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_5bskx"]
+default_input_values = [0, Vector3(1, 1, 1)]
+expanded_output_ports = [0]
+function = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1fd14"]
+input_name = "time"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void vertex() {
+	vec3 n_out2p0;
+// ColorFunc:2
+	vec3 n_in2p0 = vec3(1.00000, 1.00000, 1.00000);
+	{
+		vec3 c = n_in2p0;
+		vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+		vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+		n_out2p0 = c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out2p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/2/node = SubResource("VisualShaderNodeColorFunc_5bskx")
+nodes/vertex/2/position = Vector2(20, 260)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_1fd14")
+nodes/vertex/3/position = Vector2(-420, 340)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 2)
+nodes/fragment/0/position = Vector2(800, 200)
