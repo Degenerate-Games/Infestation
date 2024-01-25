@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://be2kqbinwshmy" path="res://scenes/enemies/structures/sink.tscn" id="6_or21f"]
 [ext_resource type="PackedScene" uid="uid://dji2do25n7okl" path="res://scenes/enemies/structures/salad_bar.tscn" id="7_ohvwu"]
 [ext_resource type="PackedScene" uid="uid://blb1hjo3mffpe" path="res://scenes/enemies/structures/stove.tscn" id="8_6giqj"]
-[ext_resource type="Texture2D" uid="uid://cpfrw0q3utqes" path="res://resources/sprites/enemies/troops/chef/chef_a.png" id="11_7ayj8"]
-[ext_resource type="Texture2D" uid="uid://bhr7t8ku2agbo" path="res://resources/sprites/enemies/troops/cook/cook_a_static.png" id="12_u4fhy"]
-[ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/Manager.png" id="13_cvu1c"]
-[ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud.tscn" id="16_42xr7"]
+[ext_resource type="PackedScene" uid="uid://cbamnpc63rg2u" path="res://scenes/enemies/troops/chef.tscn" id="9_h8lup"]
+[ext_resource type="PackedScene" uid="uid://dcmibb7b43qif" path="res://scenes/enemies/troops/cook.tscn" id="10_pegpx"]
+[ext_resource type="PackedScene" uid="uid://ds1yirhdgp6mu" path="res://scenes/enemies/troops/manager.tscn" id="11_tn2vb"]
+[ext_resource type="PackedScene" uid="uid://20pfl85f27yc" path="res://scenes/hud/hud.tscn" id="16_42xr7"]
 
 [node name="Level" type="Node2D"]
 
@@ -83,36 +83,26 @@ position = Vector2(284, 281)
 rotation = -1.5708
 scale = Vector2(2, 2)
 
-[node name="Set Dressing-Delete later" type="Node2D" parent="."]
+[node name="Troops" type="Node2D" parent="Enemies"]
 
-[node name="Enemies" type="Node" parent="Set Dressing-Delete later"]
+[node name="Chef" parent="Enemies/Troops" instance=ExtResource("9_h8lup")]
+position = Vector2(339, 283)
+rotation = -1.5708
+scale = Vector2(2, 2)
 
-[node name="ChefA" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
-texture_filter = 1
-position = Vector2(340, 282)
+[node name="Cook" parent="Enemies/Troops" instance=ExtResource("10_pegpx")]
+position = Vector2(547, 161)
+scale = Vector2(2, 2)
+
+[node name="Cook2" parent="Enemies/Troops" instance=ExtResource("10_pegpx")]
+position = Vector2(825, 209)
 rotation = 1.5708
 scale = Vector2(2, 2)
-texture = ExtResource("11_7ayj8")
 
-[node name="CookAStatic" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
-texture_filter = 1
-position = Vector2(825, 210)
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("12_u4fhy")
-
-[node name="CookAStatic2" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
-texture_filter = 1
-position = Vector2(547, 160)
-scale = Vector2(2, 2)
-texture = ExtResource("12_u4fhy")
-
-[node name="Manager" type="Sprite2D" parent="Set Dressing-Delete later/Enemies"]
-texture_filter = 1
-position = Vector2(779, 511)
+[node name="Manager" parent="Enemies/Troops" instance=ExtResource("11_tn2vb")]
+position = Vector2(777, 513)
 rotation = -0.785398
 scale = Vector2(2, 2)
-texture = ExtResource("13_cvu1c")
 
 [node name="HUD" parent="." instance=ExtResource("16_42xr7")]
 
