@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://djf1afj6m6qbp"]
 
-[ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_y0w7v"]
+[ext_resource type="Script" path="res://scripts/units/cockroach.gd" id="1_s6dcl"]
 [ext_resource type="Texture2D" uid="uid://cdchb4a2jxd8g" path="res://resources/sprites/units/roach/roach_l1_walk.png" id="2_r3pbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
@@ -48,7 +48,7 @@ scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 6
 motion_mode = 1
-script = ExtResource("1_y0w7v")
+script = ExtResource("1_s6dcl")
 spawn_timer = NodePath("SpawnTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -60,7 +60,6 @@ texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_oys1h")
 autoplay = "default"
-frame_progress = 0.26305
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
