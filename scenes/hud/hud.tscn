@@ -37,8 +37,6 @@ process_mode = 3
 script = ExtResource("1_07qrn")
 queue_offset = Vector2(35, 50)
 hand_size_limit = 3
-card_width = null
-current_phase = null
 wave_display = NodePath("MainContainer/Status Container/Wave")
 draw_pile = NodePath("DrawPile")
 discard_pile = NodePath("DiscardPile")
@@ -159,3 +157,4 @@ text = "Queue"
 
 [connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton1" to="." method="_on_control_button_1_gui_input"]
 [connection signal="gui_input" from="MainContainer/ControlButtonContainer/ControlButton2" to="." method="_on_control_button_2_gui_input"]
+[connection signal="timeout" from="MainContainer/Status Container/TimerDisplay/RoundTimer" to="." method="_on_round_timer_timeout"]
