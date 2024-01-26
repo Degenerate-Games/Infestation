@@ -127,6 +127,13 @@ func queue_unit(unit_path, unit_data):
 	unit.position += queue_offset
 	queue_offset.y += 50
 
+func requeue_unit(unit):
+	unit.moving = false
+	unit.target = null
+	unit.reparent(queue, false)
+	unit.position = Vector2.ZERO + queue_offset
+	queue_offset.y += 50
+
 func play():
 	var delay = 1
 	for unit in unit_queue:
@@ -139,6 +146,9 @@ func pause():
 
 func resume():
 	get_tree().paused = false
+
+func is_play_phase():
+	return current_phase == PHASE.PLAY
 
 func _on_control_button_1_gui_input(event):
 	if event.is_action_pressed("Select"):
@@ -176,3 +186,17 @@ func _on_control_button_2_gui_input(event):
 			64.0:
 				control_button_2.texture.region.position.x = 32
 				Engine.set_time_scale(1.0)
+
+
+func _on_round_timer_timeout():
+	current_wave += 1
+	round_timer.wait_time = 20.0
+	update_timer()
+	queue_offset.y = 50.0
+	for unit in unit_queue:
+		if unit and unit.is_inside_tree():
+			requeue_unit(unit)
+	draw_hand()
+	control_button_1.texture.region.position.x = 0
+	control_button_2.texture.region.position.x = 0
+	current_phase = PHASE.DRAW
