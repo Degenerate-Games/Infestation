@@ -14,9 +14,14 @@ func lerpvec2(from: Vector2, to: Vector2, weight: float):
 	temp.y = lerpf(from.y, to.y, weight)
 	return temp
 
-func get_random_target():
-	var targets = current_level.get_node("Enemies/Structures").get_children()
-	targets.append_array(current_level.get_node("Enemies/Troops").get_children())
+func get_random_target(include_structures = true, include_troops = true, include_units = false):
+	var targets = []
+	if include_structures:
+		targets.append_array(current_level.get_node("Enemies/Structures").get_children())
+	if include_troops:
+		targets.append_array(current_level.get_node("Enemies/Troops").get_children())
+	if include_units:
+		targets.append_array(current_level.get_node("Spawner").get_children())
 	if targets.size() == 0:
 		return null
 	var target = targets[randi() % targets.size()]
