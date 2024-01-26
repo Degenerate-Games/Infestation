@@ -1,12 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfgefkdvebpyb"]
+[gd_scene load_steps=12 format=3 uid="uid://dfgefkdvebpyb"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_huasp"]
 [ext_resource type="Texture2D" uid="uid://cclp178xjxloe" path="res://resources/sprites/units/Rat/rat_l1-p0.png" id="2_fhq7p"]
+[ext_resource type="Texture2D" uid="uid://da8t366l3n413" path="res://resources/sprites/units/Rat/rat_l1-walk.png" id="3_b1mbr"]
 [ext_resource type="PackedScene" uid="uid://bx14ukb6okeue" path="res://scenes/hud/health_bar.tscn" id="3_lqxu7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
 radius = 7.0
 height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r23o7"]
+atlas = ExtResource("3_b1mbr")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti21c"]
+atlas = ExtResource("3_b1mbr")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tis2"]
+atlas = ExtResource("3_b1mbr")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkhm8"]
+atlas = ExtResource("3_b1mbr")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq07v"]
+atlas = ExtResource("2_fhq7p")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7j84y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r23o7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti21c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tis2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkhm8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq07v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar")]
 scale = Vector2(2, 2)
@@ -21,9 +70,10 @@ health_bar = NodePath("HealthBar")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
-[node name="RatSprite" type="Sprite2D" parent="."]
+[node name="RatSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_fhq7p")
+sprite_frames = SubResource("SpriteFrames_7j84y")
+autoplay = "idle"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true

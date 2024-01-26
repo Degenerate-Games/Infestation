@@ -9,10 +9,6 @@
 radius = 7.0
 height = 32.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_drx2j"]
-atlas = ExtResource("2_rj3ye")
-region = Rect2(0, 0, 32, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6hno7"]
 atlas = ExtResource("3_jrp5h")
 region = Rect2(0, 0, 32, 16)
@@ -29,16 +25,12 @@ region = Rect2(64, 0, 32, 16)
 atlas = ExtResource("3_jrp5h")
 region = Rect2(96, 0, 32, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_drx2j"]
+atlas = ExtResource("2_rj3ye")
+region = Rect2(0, 0, 32, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fvrqr"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_drx2j")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 0.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6hno7")
@@ -53,8 +45,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_8ojgv")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drx2j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.0
 }]
 
 [node name="Mouse" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar")]
@@ -73,7 +73,6 @@ shape = SubResource("CapsuleShape2D_77vij")
 [node name="MouseSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fvrqr")
-animation = &"idle"
 autoplay = "idle"
 
 [node name="SpawnTimer" type="Timer" parent="."]

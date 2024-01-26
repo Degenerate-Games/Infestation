@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djf1afj6m6qbp"]
+[gd_scene load_steps=11 format=3 uid="uid://djf1afj6m6qbp"]
 
 [ext_resource type="Script" path="res://scripts/units/cockroach.gd" id="1_s6dcl"]
 [ext_resource type="Texture2D" uid="uid://cdchb4a2jxd8g" path="res://resources/sprites/units/roach/roach_l1_walk.png" id="2_r3pbx"]
@@ -24,6 +24,10 @@ region = Rect2(64, 0, 32, 16)
 atlas = ExtResource("2_r3pbx")
 region = Rect2(96, 0, 32, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc77i"]
+atlas = ExtResource("2_r3pbx")
+region = Rect2(0, 0, 32, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_oys1h"]
 animations = [{
 "frames": [{
@@ -41,6 +45,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc77i")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -61,7 +73,8 @@ shape = SubResource("CapsuleShape2D_77vij")
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_oys1h")
-autoplay = "default"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
