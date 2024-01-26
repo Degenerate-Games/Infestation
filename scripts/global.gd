@@ -16,6 +16,9 @@ func lerpvec2(from: Vector2, to: Vector2, weight: float):
 
 func get_random_target():
 	var targets = current_level.get_node("Enemies/Structures").get_children()
+	targets.append_array(current_level.get_node("Enemies/Troops").get_children())
+	if targets.size() == 0:
+		return null
 	var target = targets[randi() % targets.size()]
 	return target
 
