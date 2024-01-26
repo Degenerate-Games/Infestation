@@ -1,12 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr51h0v3lgn1s"]
+[gd_scene load_steps=12 format=3 uid="uid://dr51h0v3lgn1s"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_55t0q"]
 [ext_resource type="Texture2D" uid="uid://bjjiqt0mdq4yg" path="res://resources/sprites/units/mouse/mouse_l1-p0.png" id="2_rj3ye"]
 [ext_resource type="PackedScene" uid="uid://bx14ukb6okeue" path="res://scenes/hud/health_bar.tscn" id="3_j3bk5"]
+[ext_resource type="Texture2D" uid="uid://c3k4ivnuenwyu" path="res://resources/sprites/units/mouse/mouse_l1-walk.png" id="3_jrp5h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
 radius = 7.0
 height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drx2j"]
+atlas = ExtResource("2_rj3ye")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hno7"]
+atlas = ExtResource("3_jrp5h")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckg2i"]
+atlas = ExtResource("3_jrp5h")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phfm8"]
+atlas = ExtResource("3_jrp5h")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ojgv"]
+atlas = ExtResource("3_jrp5h")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fvrqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drx2j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hno7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckg2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phfm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ojgv")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Mouse" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar")]
 scale = Vector2(1.5, 1.5)
@@ -21,9 +70,11 @@ health_bar = NodePath("HealthBar")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
-[node name="MouseSprite" type="Sprite2D" parent="."]
+[node name="MouseSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_rj3ye")
+sprite_frames = SubResource("SpriteFrames_fvrqr")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
