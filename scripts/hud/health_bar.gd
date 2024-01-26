@@ -19,3 +19,6 @@ func _process(_delta):
 func take_damage(damage: float):
 	health -= damage
 	return health <= 0
+
+func is_below_half():
+	return health < max_health / 2
