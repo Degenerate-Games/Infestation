@@ -117,6 +117,8 @@ func _on_mouse_exited():
 	z_index = 0 
 
 func _on_gui_input(event):
+	if Global.HUD.is_play_phase():
+		return
 	if event.is_action_pressed("Select"):
 		if selected:
 			Global.selected_card = null
