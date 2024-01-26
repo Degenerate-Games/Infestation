@@ -4,7 +4,15 @@ class_name Unit
 
 const SPEED = 300.0
 var target: Node2D
-var moving: bool = false
+var moving: bool = false:
+	get:
+		return moving
+	set(value):
+		moving = value
+		if value:
+			$AttackTimer.start(1.0)
+		else:
+			$AttackTimer.stop()
 var attack
 var defense
 @export var spawn_timer: Timer
@@ -47,13 +55,13 @@ func attack_target():
 		target.take_damage(attack)
 
 func in_range(trgt):
-	print(trgt.global_position.distance_to(global_position))
 	return trgt.global_position.distance_to(global_position) < 100.0
 
 func valid_target():
 	return target != null and target.is_inside_tree()
 
 func take_damage(damage):
-	damage /= defense
+	damage = (damage / defense) * 1.5
+	damage = floor(damage)
 	if health_bar.take_damage(damage):
 		queue_free()
