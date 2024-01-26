@@ -29,3 +29,7 @@ offset_right = -10.0
 offset_bottom = 10.0
 scale = Vector2(0.5, 0.1)
 max_health = 10.0
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackTimer" to="." method="attack_target"]
