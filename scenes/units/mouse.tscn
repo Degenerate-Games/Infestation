@@ -71,6 +71,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
 [node name="MouseSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fvrqr")
 autoplay = "idle"
