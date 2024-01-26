@@ -20,9 +20,15 @@ func _physics_process(delta):
 
 func pick_direction():
 	var random_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
-	if target:
+	if valid_target():
 		var target_direction = target.global_position - global_position
 		random_direction = random_direction.lerp(target_direction.normalized(), 0.5)
+	else:
+		target = Global.get_random_target()
+		if target:
+			random_direction = pick_direction()
+		else:
+			target = Global.current_level.get_node("Spawner")
 	return random_direction
 
 func delayed_spawn(delay, trgt = null):
@@ -36,6 +42,18 @@ func delayed_spawn(delay, trgt = null):
 	reparent(Global.current_level.get_node("Spawner"), false)
 	moving = true
 
+func attack_target():
+	if valid_target() and in_range(target) and target.has_method("take_damage"):
+		target.take_damage(attack)
+
+func in_range(trgt):
+	print(trgt.global_position.distance_to(global_position))
+	return trgt.global_position.distance_to(global_position) < 100.0
+
+func valid_target():
+	return target != null and target.is_inside_tree()
+
 func take_damage(damage):
+	damage /= defense
 	if health_bar.take_damage(damage):
 		queue_free()
