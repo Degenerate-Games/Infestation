@@ -33,6 +33,8 @@ texture = ExtResource("2_5d8ir")
 
 [node name="5StarWall" type="StaticBody2D" parent="5StarFloor"]
 position = Vector2(-177, 0)
+collision_layer = 2
+collision_mask = 12
 
 [node name="Sprite2D" type="Sprite2D" parent="5StarFloor/5StarWall"]
 texture_filter = 1
