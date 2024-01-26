@@ -71,10 +71,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
 [node name="CockroachSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_oys1h")
-animation = &"idle"
 autoplay = "idle"
 
 [node name="SpawnTimer" type="Timer" parent="."]
