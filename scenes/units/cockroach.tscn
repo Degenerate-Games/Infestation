@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://djf1afj6m6qbp"]
+[gd_scene load_steps=10 format=3 uid="uid://djf1afj6m6qbp"]
 
 [ext_resource type="Script" path="res://scripts/units/cockroach.gd" id="1_s6dcl"]
 [ext_resource type="Texture2D" uid="uid://cdchb4a2jxd8g" path="res://resources/sprites/units/roach/roach_l1_walk.png" id="2_r3pbx"]
+[ext_resource type="PackedScene" uid="uid://bx14ukb6okeue" path="res://scenes/hud/health_bar.tscn" id="3_kt52v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
 radius = 17.0
@@ -43,13 +44,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer")]
+[node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar")]
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_s6dcl")
 spawn_timer = NodePath("SpawnTimer")
+health_bar = NodePath("HealthBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -63,3 +65,11 @@ autoplay = "default"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HealthBar" parent="." instance=ExtResource("3_kt52v")]
+offset_left = -40.0
+offset_top = 16.0
+offset_right = -40.0
+offset_bottom = 16.0
+scale = Vector2(2, 0.3)
+max_health = 10.0
