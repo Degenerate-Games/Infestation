@@ -1,12 +1,60 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlokhcguujn5x"]
+[gd_scene load_steps=11 format=3 uid="uid://dlokhcguujn5x"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_0vqdy"]
-[ext_resource type="Texture2D" uid="uid://cxggmuw6mrxrt" path="res://resources/sprites/units/bird/bird_l1-p0.png" id="2_as0dn"]
+[ext_resource type="Texture2D" uid="uid://q3wmsi6i6oca" path="res://resources/sprites/units/bird/bird_l1-fly.png" id="2_ld3st"]
 [ext_resource type="PackedScene" uid="uid://bx14ukb6okeue" path="res://scenes/hud/health_bar.tscn" id="3_gbkiw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
 radius = 13.0
 height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5ste"]
+atlas = ExtResource("2_ld3st")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyta4"]
+atlas = ExtResource("2_ld3st")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td4yd"]
+atlas = ExtResource("2_ld3st")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkm2g"]
+atlas = ExtResource("2_ld3st")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhx1g"]
+atlas = ExtResource("2_ld3st")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4y0ud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5ste")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyta4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td4yd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkm2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhx1g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.0
+}]
 
 [node name="Bird" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar")]
 scale = Vector2(2, 2)
@@ -21,9 +69,11 @@ health_bar = NodePath("HealthBar")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
-[node name="BirdSprite" type="Sprite2D" parent="."]
+[node name="BirdSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_as0dn")
+sprite_frames = SubResource("SpriteFrames_4y0ud")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
