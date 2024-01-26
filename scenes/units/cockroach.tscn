@@ -56,7 +56,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar")]
+[node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar", "animated_sprite")]
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 6
@@ -64,6 +64,7 @@ motion_mode = 1
 script = ExtResource("1_s6dcl")
 spawn_timer = NodePath("SpawnTimer")
 health_bar = NodePath("HealthBar")
+animated_sprite = NodePath("CockroachSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

@@ -10,13 +10,16 @@ var moving: bool = false:
 	set(value):
 		moving = value
 		if value:
+			if animated_sprite: animated_sprite.play("default")
 			$AttackTimer.start(1.0)
 		else:
+			if animated_sprite: animated_sprite.play("idle")
 			$AttackTimer.stop()
 var attack
 var defense
 @export var spawn_timer: Timer
 @export var health_bar: Control
+@export var animated_sprite: AnimatedSprite2D
 
 func _physics_process(delta):
 	if moving:
