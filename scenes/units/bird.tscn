@@ -56,7 +56,7 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="Bird" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar")]
+[node name="Bird" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar", "animated_sprite")]
 scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 6
@@ -64,6 +64,7 @@ motion_mode = 1
 script = ExtResource("1_0vqdy")
 spawn_timer = NodePath("SpawnTimer")
 health_bar = NodePath("HealthBar")
+animated_sprite = NodePath("BirdSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
