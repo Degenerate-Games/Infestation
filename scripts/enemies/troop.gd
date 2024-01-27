@@ -53,7 +53,8 @@ func in_range(trgt):
 	return trgt.global_position.distance_to(global_position) < 100.0
 
 func take_damage(damage):
+	current_mode = MODE.ATTACK
+	target = null
 	if health_bar.take_damage(damage):
-		current_mode = MODE.ATTACK
 		Global.HUD.increase_score(900)
 		queue_free()
