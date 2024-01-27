@@ -166,7 +166,8 @@ func requeue_unit(unit):
 func play():
 	var delay = 1
 	for unit in unit_queue:
-		unit.delayed_spawn(delay, target)
+		if unit and is_instance_valid(unit):
+			unit.delayed_spawn(delay, target)
 		delay += 1
 	target = null
 

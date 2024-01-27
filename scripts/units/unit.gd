@@ -3,7 +3,14 @@ extends CharacterBody2D
 class_name Unit
 
 const SPEED = 300.0
-var target: Node2D
+var target: Node2D:
+	get:
+		return target
+	set(value):
+		target = value
+		var old_rot = rotation
+		rotation = global_position.angle_to(target.global_position)
+		health_bar.rotation -= rotation - old_rot
 var moving: bool = false:
 	get:
 		return moving
