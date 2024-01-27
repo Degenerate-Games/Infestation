@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk5kqbw4fypxh"
-path="res://.godot/imported/mapshadow.png-e44ce2ddb70406f063b1af1ac4e10a41.ctex"
+uid="uid://di0frnmk1dapj"
+path="res://.godot/imported/table_background.png-3f5fa6d8dc97b04f200149bcd179ce87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/textures/table/mapshadow.png"
-dest_files=["res://.godot/imported/mapshadow.png-e44ce2ddb70406f063b1af1ac4e10a41.ctex"]
+source_file="res://resources/textures/table/table_background.png"
+dest_files=["res://.godot/imported/table_background.png-3f5fa6d8dc97b04f200149bcd179ce87.ctex"]
 
 [params]
 
