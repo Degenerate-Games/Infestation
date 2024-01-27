@@ -18,15 +18,24 @@ func lerpvec2(from: Vector2, to: Vector2, weight: float):
 func get_random_target(include_structures = true, include_troops = true, include_units = false):
 	var targets = []
 	if include_structures:
-		targets.append_array(current_level.get_node("Enemies/Structures").get_children())
+		targets.append_array(get_structures())
 	if include_troops:
-		targets.append_array(current_level.get_node("Enemies/Troops").get_children())
+		targets.append_array(get_troops())
 	if include_units:
-		targets.append_array(current_level.get_node("Spawner").get_children())
+		targets.append_array(get_units())
 	if targets.size() == 0:
 		return null
 	var target = targets[randi() % targets.size()]
 	return target
+
+func get_structures():
+	return current_level.get_node("Enemies/Structures").get_children()
+
+func get_troops():
+	return current_level.get_node("Enemies/Troops").get_children()
+
+func get_units():
+	return current_level.get_node("Spawner").get_children()
 
 func get_physics_node_under_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
