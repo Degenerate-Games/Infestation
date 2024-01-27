@@ -52,11 +52,7 @@ var score: int:
 			grade.text = "D"
 		elif score < 8000:
 			grade.text = "D-"
-		elif score < 9000:
-			grade.text = "E"
 		elif score < 10000:
-			grade.text = "E-"
-		else:
 			grade.text = "F"
 @export_category("Node References")
 @export var wave_display: Label
