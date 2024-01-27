@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://djf1afj6m6qbp"]
+[gd_scene load_steps=12 format=3 uid="uid://djf1afj6m6qbp"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_ojiru"]
 [ext_resource type="Texture2D" uid="uid://cdchb4a2jxd8g" path="res://resources/sprites/units/roach/roach_l1_walk.png" id="2_r3pbx"]
 [ext_resource type="PackedScene" uid="uid://bx14ukb6okeue" path="res://scenes/hud/health_bar.tscn" id="3_kt52v"]
+[ext_resource type="AudioStream" uid="uid://bmt43j2k8foc5" path="res://resources/music/hits/unit_attack.mp3" id="4_7bkwu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77vij"]
 radius = 17.0
@@ -90,5 +91,17 @@ max_health = 10.0
 
 [node name="AttackTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="sound" type="Node2D" parent="."]
+
+[node name="unit_attack" type="AudioStreamPlayer2D" parent="sound"]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+stream = ExtResource("4_7bkwu")
+
+[node name="unit_death" type="AudioStreamPlayer2D" parent="sound"]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+stream = ExtResource("4_7bkwu")
 
 [connection signal="timeout" from="AttackTimer" to="." method="attack_target"]

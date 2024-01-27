@@ -56,6 +56,7 @@ func delayed_spawn(delay, trgt = null):
 func attack_target():
 	if valid_target() and in_range(target) and target.has_method("take_damage"):
 		target.take_damage(attack)
+		%unit_attack.play()
 
 func in_range(trgt):
 	return trgt.global_position.distance_to(global_position) < 100.0
@@ -67,4 +68,5 @@ func take_damage(damage):
 	damage = (damage / defense) * 1.5
 	damage = floor(damage)
 	if health_bar.take_damage(damage):
+		%unit_death.play()
 		queue_free()
