@@ -21,7 +21,7 @@ func _process(_delta):
 		MODE.REPAIR:
 			if not valid_target():
 				target = Global.get_random_target(true, false, false)
-			if target.health_bar.is_below_half():
+			elif target.health_bar.is_below_half():
 				current_mode = MODE.ATTACK
 				target = Global.get_random_target(false, false, false)
 
@@ -30,7 +30,7 @@ func enter_repair_mode():
 	target = null
 
 func valid_target():
-	return target != null and target.is_inside_tree()
+	return target != null and is_instance_valid(target)
 
 func _physics_process(delta):
 	if valid_target():

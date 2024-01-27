@@ -67,7 +67,7 @@ func in_range(trgt):
 	return trgt.global_position.distance_to(global_position) < 100.0
 
 func valid_target():
-	return target != null and target.is_inside_tree()
+	return target != null and is_instance_valid(target)
 
 func take_damage(damage):
 	damage = (damage / defense) * 1.5
