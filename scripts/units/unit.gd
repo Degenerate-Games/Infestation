@@ -34,6 +34,13 @@ var defense
 @export var unit_attack: AudioStreamPlayer2D
 @export var unit_death: AudioStreamPlayer2D
 
+func _ready():
+	health_bar = get_node("HealthBar")
+	animated_sprite = get_node("AnimatedSprite")
+	spawn_timer = get_node("SpawnTimer")
+	unit_attack = get_node_or_null("UnitAttack")
+	unit_death = get_node_or_null("UnitDeath")
+
 func _physics_process(delta):
 	if moving:
 		velocity = pick_direction() * SPEED
