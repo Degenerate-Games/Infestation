@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
-[ext_resource type="Texture2D" uid="uid://dk5kqbw4fypxh" path="res://resources/textures/table/mapshadow.png" id="2_5d8ir"]
-[ext_resource type="Texture2D" uid="uid://dvt5iueuo0b56" path="res://resources/textures/table/tablebg.png" id="2_647mx"]
 [ext_resource type="Texture2D" uid="uid://4cjvvg0loiyb" path="res://resources/textures/5star/5star_wall.png" id="2_jef5x"]
+[ext_resource type="Texture2D" uid="uid://cd0xvo5mg44vc" path="res://resources/textures/table/map_shadow.png" id="2_xfsff"]
+[ext_resource type="Texture2D" uid="uid://di0frnmk1dapj" path="res://resources/textures/table/table_background.png" id="4_5csqn"]
 [ext_resource type="PackedScene" uid="uid://ed8ryfbcomu5" path="res://scenes/enemies/structures/hot_bar.tscn" id="5_e4i87"]
 [ext_resource type="PackedScene" uid="uid://be2kqbinwshmy" path="res://scenes/enemies/structures/sink.tscn" id="6_or21f"]
 [ext_resource type="PackedScene" uid="uid://dji2do25n7okl" path="res://scenes/enemies/structures/salad_bar.tscn" id="7_ohvwu"]
@@ -29,7 +29,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(384.5, 366.5)
 scale = Vector2(3.10938, 3.05417)
-texture = ExtResource("2_5d8ir")
+texture = ExtResource("2_xfsff")
 
 [node name="5StarWall" type="StaticBody2D" parent="5StarFloor"]
 position = Vector2(-177, 0)
@@ -51,7 +51,7 @@ z_index = -2
 texture_filter = 1
 position = Vector2(576, 324.5)
 scale = Vector2(3.60625, 2.7125)
-texture = ExtResource("2_647mx")
+texture = ExtResource("4_5csqn")
 
 [node name="Enemies" type="Node2D" parent="."]
 
