@@ -17,9 +17,14 @@ var moving: bool = false:
 			$AttackTimer.stop()
 var attack
 var defense
+@export_category("Visual Nodes")
 @export var spawn_timer: Timer
 @export var health_bar: Control
 @export var animated_sprite: AnimatedSprite2D
+
+@export_category("Audio Nodes")
+@export var unit_attack: AudioStreamPlayer2D
+@export var unit_death: AudioStreamPlayer2D
 
 func _physics_process(delta):
 	if moving:
@@ -56,7 +61,7 @@ func delayed_spawn(delay, trgt = null):
 func attack_target():
 	if valid_target() and in_range(target) and target.has_method("take_damage"):
 		target.take_damage(attack)
-		%unit_attack.play()
+		if unit_attack: unit_attack.play()
 
 func in_range(trgt):
 	return trgt.global_position.distance_to(global_position) < 100.0
@@ -68,5 +73,5 @@ func take_damage(damage):
 	damage = (damage / defense) * 1.5
 	damage = floor(damage)
 	if health_bar.take_damage(damage):
-		%unit_death.play()
+		if unit_death: unit_death.play()
 		queue_free()

@@ -57,7 +57,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar", "animated_sprite")]
+[node name="Cockroach" type="CharacterBody2D" node_paths=PackedStringArray("spawn_timer", "health_bar", "animated_sprite", "unit_attack", "unit_death")]
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 6
@@ -66,6 +66,8 @@ script = ExtResource("1_ojiru")
 spawn_timer = NodePath("SpawnTimer")
 health_bar = NodePath("HealthBar")
 animated_sprite = NodePath("CockroachSprite")
+unit_attack = NodePath("Sounds/unit_attack")
+unit_death = NodePath("Sounds/unit_death")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -91,13 +93,13 @@ max_health = 10.0
 [node name="AttackTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="sound" type="Node2D" parent="."]
+[node name="Sounds" type="Node2D" parent="."]
 
-[node name="unit_attack" type="AudioStreamPlayer2D" parent="sound"]
+[node name="unit_attack" type="AudioStreamPlayer2D" parent="Sounds"]
 scale = Vector2(2, 2)
 stream = ExtResource("4_7bkwu")
 
-[node name="unit_death" type="AudioStreamPlayer2D" parent="sound"]
+[node name="unit_death" type="AudioStreamPlayer2D" parent="Sounds"]
 scale = Vector2(2, 2)
 stream = ExtResource("4_7bkwu")
 
