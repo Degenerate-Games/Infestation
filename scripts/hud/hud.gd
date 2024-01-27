@@ -40,6 +40,36 @@ var target: Node2D:
 @export var round_timer: Timer
 @export var control_button_1: TextureRect
 @export var control_button_2: TextureRect
+@export var score_display: Label
+@export var score: int:
+	get:
+		return Global.score
+	set(value):
+		Global.score = value
+		score_display.text = "%06d" % value
+		if score < 1000:
+			grade.text = "A"
+		elif score < 2000:
+			grade.text = "A-"
+		elif score < 3000:
+			grade.text = "B"
+		elif score < 4000:
+			grade.text = "B-"
+		elif score < 5000:
+			grade.text = "C"
+		elif score < 6000:
+			grade.text = "C-"
+		elif score < 7000:
+			grade.text = "D"
+		elif score < 8000:
+			grade.text = "D-"
+		elif score < 9000:
+			grade.text = "E"
+		elif score < 10000:
+			grade.text = "E-"
+		else:
+			grade.text = "F"
+@export var grade: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -196,7 +226,13 @@ func _on_round_timer_timeout():
 	for unit in unit_queue:
 		if unit and unit.is_inside_tree():
 			requeue_unit(unit)
+	for troop in Global.get_troops():
+		if troop and troop.is_inside_tree():
+			troop.enter_repair_mode()
 	draw_hand()
 	control_button_1.texture.region.position.x = 0
 	control_button_2.texture.region.position.x = 0
 	current_phase = PHASE.DRAW
+
+func increase_score(scor):
+	score += scor

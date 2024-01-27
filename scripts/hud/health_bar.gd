@@ -18,6 +18,7 @@ func _process(_delta):
 # Returns true if the entity should die
 func take_damage(damage: float):
 	health -= damage
+	health = clampf(health, 0, max_health)
 	return health <= 0
 
 func is_below_half():
