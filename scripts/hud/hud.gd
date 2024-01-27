@@ -30,18 +30,7 @@ var target: Node2D:
 		return target
 	set(value):
 		target = value
-@export_category("Node References")
-@export var wave_display: Label
-@export var draw_pile: Control
-@export var discard_pile: Node2D
-@export var hand_node: Node2D
-@export var queue: Node2D
-@export var timer_display: Control
-@export var round_timer: Timer
-@export var control_button_1: TextureRect
-@export var control_button_2: TextureRect
-@export var score_display: Label
-@export var score: int:
+var score: int:
 	get:
 		return Global.score
 	set(value):
@@ -69,7 +58,21 @@ var target: Node2D:
 			grade.text = "E-"
 		else:
 			grade.text = "F"
+@export_category("Node References")
+@export var wave_display: Label
+@export var draw_pile: Control
+@export var discard_pile: Node2D
+@export var hand_node: Node2D
+@export var queue: Node2D
+@export var timer_display: Control
+@export var round_timer: Timer
+@export var control_button_1: TextureRect
+@export var control_button_2: TextureRect
+@export var score_display: Label
 @export var grade: Label
+@export var main_music: AudioStreamPlayer
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -224,10 +227,10 @@ func _on_round_timer_timeout():
 	update_timer()
 	queue_offset.y = 50.0
 	for unit in unit_queue:
-		if unit and unit.is_inside_tree():
+		if unit and is_instance_valid(unit):
 			requeue_unit(unit)
 	for troop in Global.get_troops():
-		if troop and troop.is_inside_tree():
+		if troop and is_instance_valid(troop):
 			troop.enter_repair_mode()
 	draw_hand()
 	control_button_1.texture.region.position.x = 0
@@ -236,3 +239,7 @@ func _on_round_timer_timeout():
 
 func increase_score(scor):
 	score += scor
+
+
+func _on_audio_stream_player_finished():
+	main_music.play()
