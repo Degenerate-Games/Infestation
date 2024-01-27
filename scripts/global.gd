@@ -1,5 +1,6 @@
 extends Node2D
 
+var score: int
 var selected_card
 var current_level: Node2D:
 	get:

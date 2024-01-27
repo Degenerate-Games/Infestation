@@ -11,6 +11,7 @@ var attack = 4
 @export var health_bar: Control
 
 func _process(_delta):
+	# TODO: Return to repair mode at end of round
 	match current_mode:
 		MODE.ATTACK:
 			if not valid_target():
@@ -46,4 +47,5 @@ func in_range(trgt):
 
 func take_damage(damage):
 	if health_bar.take_damage(damage):
+		Global.HUD.increase_score(900)
 		queue_free()
