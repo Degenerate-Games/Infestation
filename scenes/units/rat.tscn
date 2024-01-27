@@ -65,13 +65,13 @@ motion_mode = 1
 script = ExtResource("1_huasp")
 spawn_timer = NodePath("SpawnTimer")
 health_bar = NodePath("HealthBar")
-animated_sprite = NodePath("RatSprite")
+animated_sprite = NodePath("AnimatedSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_77vij")
 
-[node name="RatSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_7j84y")
 animation = &"idle"
