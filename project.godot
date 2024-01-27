@@ -13,7 +13,6 @@ config_version=5
 config/name="Infestation"
 run/main_scene="res://scenes/levels/5starkitchen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
