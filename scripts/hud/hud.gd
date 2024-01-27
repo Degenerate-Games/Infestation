@@ -226,6 +226,9 @@ func _on_round_timer_timeout():
 	for unit in unit_queue:
 		if unit and unit.is_inside_tree():
 			requeue_unit(unit)
+	for troop in Global.get_troops():
+		if troop and troop.is_inside_tree():
+			troop.enter_repair_mode()
 	draw_hand()
 	control_button_1.texture.region.position.x = 0
 	control_button_2.texture.region.position.x = 0

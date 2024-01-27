@@ -10,20 +10,24 @@ var current_mode = MODE.REPAIR
 var attack = 4
 @export var health_bar: Control
 
+func _ready():
+	$AttackTimer.start(2)
+
 func _process(_delta):
-	# TODO: Return to repair mode at end of round
 	match current_mode:
 		MODE.ATTACK:
 			if not valid_target():
 				target = Global.get_random_target(false, false, true)
-				$AttackTimer.start(2)
 		MODE.REPAIR:
-			$AttackTimer.stop()
 			if not valid_target():
 				target = Global.get_random_target(true, false, false)
 			if target.health_bar.is_below_half():
 				current_mode = MODE.ATTACK
 				target = Global.get_random_target(false, false, false)
+
+func enter_repair_mode():
+	current_mode = MODE.REPAIR
+	target = null
 
 func valid_target():
 	return target != null and target.is_inside_tree()
@@ -39,13 +43,17 @@ func _physics_process(delta):
 
 func attack_target():
 	if valid_target() and in_range(target) and target.has_method("take_damage"):
-		target.take_damage(attack)
+		match current_mode:
+			MODE.ATTACK:
+				target.take_damage(attack)
+			MODE.REPAIR:
+				target.take_damage(-attack)
 
 func in_range(trgt):
-	print(trgt.global_position.distance_to(global_position))
 	return trgt.global_position.distance_to(global_position) < 100.0
 
 func take_damage(damage):
 	if health_bar.take_damage(damage):
+		current_mode = MODE.ATTACK
 		Global.HUD.increase_score(900)
 		queue_free()
