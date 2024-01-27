@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/repairo.mp3-c2a951c32a3549c1aa1a00c17b7a6677.
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
