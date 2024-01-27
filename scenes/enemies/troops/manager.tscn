@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ds1yirhdgp6mu"]
 
 [ext_resource type="Script" path="res://scripts/enemies/troop.gd" id="1_toxqh"]
-[ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/Manager.png" id="2_rexof"]
+[ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/manager.png" id="2_rexof"]
 [ext_resource type="PackedScene" uid="uid://bx14ukb6okeue" path="res://scenes/hud/health_bar.tscn" id="3_ohddj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fph3r"]
