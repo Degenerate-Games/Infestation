@@ -5,7 +5,13 @@ const SPEED = 300.0
 
 enum MODE {ATTACK, REPAIR}
 
-var target: Node2D = null
+var target: Node2D = null:
+	get:
+		return target
+	set(value):
+		target = value
+		if target:
+			rotation = global_position.angle_to(target.global_position)
 var current_mode = MODE.REPAIR
 var attack = 4
 @export var health_bar: Control

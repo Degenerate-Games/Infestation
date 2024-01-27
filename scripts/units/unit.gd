@@ -8,9 +8,10 @@ var target: Node2D:
 		return target
 	set(value):
 		target = value
-		var old_rot = rotation
-		rotation = global_position.angle_to(target.global_position)
-		health_bar.rotation -= rotation - old_rot
+		if target:
+			var old_rot = rotation
+			rotation = global_position.angle_to(target.global_position)
+			health_bar.rotation -= rotation - old_rot
 var moving: bool = false:
 	get:
 		return moving
