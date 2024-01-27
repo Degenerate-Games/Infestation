@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dongvl2yci105"]
 
 [ext_resource type="Shader" uid="uid://b1oshruno1y6j" path="res://scenes/testing/shader test.tres" id="1_wfffh"]
-[ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/Manager.png" id="2_lrsgb"]
+[ext_resource type="Texture2D" uid="uid://doendy0ul7dnc" path="res://resources/sprites/enemies/troops/manager/manager.png" id="2_lrsgb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8j02g"]
 shader = ExtResource("1_wfffh")

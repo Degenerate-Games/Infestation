@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dk5kqbw4fypxh"
-path="res://.godot/imported/mapShadow.png-606650df34e7fc3285e4c168ea1090c5.ctex"
+path="res://.godot/imported/mapshadow.png-e44ce2ddb70406f063b1af1ac4e10a41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/textures/table/mapShadow.png"
-dest_files=["res://.godot/imported/mapShadow.png-606650df34e7fc3285e4c168ea1090c5.ctex"]
+source_file="res://resources/textures/table/mapshadow.png"
+dest_files=["res://.godot/imported/mapshadow.png-e44ce2ddb70406f063b1af1ac4e10a41.ctex"]
 
 [params]
 

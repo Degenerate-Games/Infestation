@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://chd535ig1s33b"]
 
 [ext_resource type="Texture2D" uid="uid://dgu6hawg2lr8y" path="res://resources/tiles/floors/floor_a.png" id="1_wvugk"]
-[ext_resource type="Texture2D" uid="uid://dk5kqbw4fypxh" path="res://resources/textures/table/mapShadow.png" id="2_5d8ir"]
-[ext_resource type="Texture2D" uid="uid://dvt5iueuo0b56" path="res://resources/textures/table/tableBG.png" id="2_647mx"]
+[ext_resource type="Texture2D" uid="uid://dk5kqbw4fypxh" path="res://resources/textures/table/mapshadow.png" id="2_5d8ir"]
+[ext_resource type="Texture2D" uid="uid://dvt5iueuo0b56" path="res://resources/textures/table/tablebg.png" id="2_647mx"]
 [ext_resource type="Texture2D" uid="uid://4cjvvg0loiyb" path="res://resources/textures/5star/5star_wall.png" id="2_jef5x"]
 [ext_resource type="PackedScene" uid="uid://ed8ryfbcomu5" path="res://scenes/enemies/structures/hot_bar.tscn" id="5_e4i87"]
 [ext_resource type="PackedScene" uid="uid://be2kqbinwshmy" path="res://scenes/enemies/structures/sink.tscn" id="6_or21f"]
